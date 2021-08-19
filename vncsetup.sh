@@ -14,6 +14,7 @@ chown -R ubuntu rclone.conf && chmod +x rclone.conf
 ############################### Install rclone dan import config
 cd /home/ubuntu/
 curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip && unzip rclone-current-linux-amd64.zip && cd rclone-*-linux-amd64 && sudo cp rclone /usr/bin/ && sudo chown root:root /usr/bin/rclone && sudo chmod 755 /usr/bin/rclone && sudo mkdir -p /usr/local/share/man/man1 && sudo cp rclone.1 /usr/local/share/man/man1/ && sudo mandb
+cd /home/ubuntu/unzip_server
 sudo -u root mv -f /home/ubuntu/unzip_server/rclone.conf /home/ubuntu/.config/rclone/
 ############################### Mount Gdrive
 sudo -u ubuntu rclone mount --allow-non-empty --daemon gdrive1: /gdrive1 && chmod 777 gdrive1 && chown -R ubuntu /gdrive1 & sleep 5 
@@ -66,9 +67,7 @@ sleep 10
 echo sleep 10
 cd /home/ubuntu/unzip_server
 cp vnc_unzip_server.txt /home/ubuntu/.vnc/xstartup
-mv -f vnc.sh /home/ubuntu/
-cd /home/ubuntu/
-chmod +x vnc.sh
-./vnc.sh start :1
-cd /home/ubuntu/unzip_server
-./zip_extract_forever.sh
+sudo -u root mv -f vnc.sh /home/ubuntu/
+chmod +x /home/ubuntu/vnc.sh
+/home/ubuntu/vnc.sh start :1
+/home/ubuntu/unzip_server/zip_extract_forever.sh
