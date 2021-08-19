@@ -1,192 +1,21 @@
 #!/bin/bash
 #by pudh
 
+###################################### Chmod dan Chown
+cd /home/ubuntu/unzip_server
+chown -R ubuntu vncsetup.sh && chmod +x vncsetup.sh
+chown -R ubuntu vnc_unzip_server.txt && chmod +x vnc_unzip_server.txt
+chown -R ubuntu vnc.sh  && chmod +x vnc.sh 
+chown -R ubuntu mount.sh  && chmod +x mount.sh 
+chown -R ubuntu dest_dir_list.txt  && chmod +x dest_dir_list.txt 
+chown -R ubuntu source_dir_list.txt  && chmod +x source_dir_list.txt 
+chown -R ubuntu zip_extract_forever.sh && chmod +x zip_extract_forever.sh
+chown -R ubuntu rclone.conf && chmod +x rclone.conf 
 ############################### Install rclone dan import config
+cd /home/ubuntu/
 curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip && unzip rclone-current-linux-amd64.zip && cd rclone-*-linux-amd64 &&  cp rclone /usr/bin/ &&  chown root:root /usr/bin/rclone &&  chmod 755 /usr/bin/rclone &&  mkdir -p /usr/local/share/man/man1 &&  cp rclone.1 /usr/local/share/man/man1/ &&  mandb
 mv -f rclone.conf /home/ubuntu/.config/rclone/
-############################### Mkdir untuk gdrive zip source dan destination
-cd /
-mkdir gdrive1
-mkdir gdrive2
-mkdir gdrive3
-mkdir gdrive4
-mkdir gdrive5
-mkdir gdrive6
-mkdir gdrive7
-mkdir gdrive8
-mkdir gdrive9
-mkdir gdrive10
-mkdir gdrive11
-mkdir gdrive12
-mkdir gdrive13
-mkdir gdrive14
-mkdir gdrive15
-mkdir gdrive16
-mkdir gdrive17
-mkdir gdrive18
-mkdir gdrive19
-mkdir gdrive20
-mkdir gdrive21
-mkdir gdrive22
-mkdir gdrive23
-mkdir gdrive24
-mkdir gdrive25
-mkdir gdrive26
-mkdir gdrive27
-mkdir gdrive28
-mkdir gdrive29
-mkdir gdrive30
-mkdir gdrive31
-mkdir gdrive32
-mkdir gdrive33
-mkdir gdrive34
-mkdir gdrive35
-mkdir gdrive36
-mkdir gdrive37
-mkdir gdrive38
-mkdir gdrive39
-mkdir gdrive40
-mkdir gdrive41
-mkdir gdrive42
-mkdir gdrive43
-mkdir gdrive44
-mkdir gdrive45
-mkdir gdrive46
-mkdir gdrive47
-mkdir gdrive48
-mkdir gdrive49
-mkdir gdrive50
-cd /
-cd gdrive1 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive2 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive3 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive4 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive5 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive6 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive7 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive8 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive9 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive10 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive11 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive12 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive13 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive14 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive15 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive16 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive17 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive18 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive19 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive20 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive31 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive32 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive33 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive34 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive35 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive36 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive37 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive38 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive39 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive40 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive41 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive42 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive43 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive44 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive45 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive46 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive47 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive48 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive49 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive50 && mkdir cha && mkdir temp
-cd &&  cd /
-sudo -u root chown -R ubuntu /gdrive1
-sudo -u root chown -R ubuntu /gdrive2
-sudo -u root chown -R ubuntu /gdrive3
-sudo -u root chown -R ubuntu /gdrive4
-sudo -u root chown -R ubuntu /gdrive5
-sudo -u root chown -R ubuntu /gdrive6
-sudo -u root chown -R ubuntu /gdrive7
-sudo -u root chown -R ubuntu /gdrive8
-sudo -u root chown -R ubuntu /gdrive9
-sudo -u root chown -R ubuntu /gdrive10
-sudo -u root chown -R ubuntu /gdrive11
-sudo -u root chown -R ubuntu /gdrive12
-sudo -u root chown -R ubuntu /gdrive13
-sudo -u root chown -R ubuntu /gdrive14
-sudo -u root chown -R ubuntu /gdrive15
-sudo -u root chown -R ubuntu /gdrive16
-sudo -u root chown -R ubuntu /gdrive17
-sudo -u root chown -R ubuntu /gdrive18
-sudo -u root chown -R ubuntu /gdrive19
-sudo -u root chown -R ubuntu /gdrive20
-sudo -u root chown -R ubuntu /gdrive21
-sudo -u root chown -R ubuntu /gdrive22
-sudo -u root chown -R ubuntu /gdrive23
-sudo -u root chown -R ubuntu /gdrive24
-sudo -u root chown -R ubuntu /gdrive25
-sudo -u root chown -R ubuntu /gdrive26
-sudo -u root chown -R ubuntu /gdrive27
-sudo -u root chown -R ubuntu /gdrive28
-sudo -u root chown -R ubuntu /gdrive29
-sudo -u root chown -R ubuntu /gdrive30
-sudo -u root chown -R ubuntu /gdrive31
-sudo -u root chown -R ubuntu /gdrive32
-sudo -u root chown -R ubuntu /gdrive33
-sudo -u root chown -R ubuntu /gdrive34
-sudo -u root chown -R ubuntu /gdrive35
-sudo -u root chown -R ubuntu /gdrive36
-sudo -u root chown -R ubuntu /gdrive37
-sudo -u root chown -R ubuntu /gdrive38
-sudo -u root chown -R ubuntu /gdrive39
-sudo -u root chown -R ubuntu /gdrive40
-sudo -u root chown -R ubuntu /gdrive41
-sudo -u root chown -R ubuntu /gdrive42
-sudo -u root chown -R ubuntu /gdrive43
-sudo -u root chown -R ubuntu /gdrive44
-sudo -u root chown -R ubuntu /gdrive45
-sudo -u root chown -R ubuntu /gdrive46
-sudo -u root chown -R ubuntu /gdrive47
-sudo -u root chown -R ubuntu /gdrive48
-sudo -u root chown -R ubuntu /gdrive49
-sudo -u root chown -R ubuntu /gdrive50
+############################### Mount Gdrive
 sudo -u ubuntu rclone mount --allow-non-empty --daemon gdrive1: /gdrive1 && chmod 777 gdrive1 && chown -R ubuntu /gdrive1 & sleep 5 
 sudo -u ubuntu rclone mount --allow-non-empty --daemon gdrive2: /gdrive2 && chmod 777 gdrive2 && chown -R ubuntu /gdrive2 & sleep 5
 sudo -u ubuntu rclone mount --allow-non-empty --daemon gdrive3: /gdrive3 && chmod 777 gdrive3 && chown -R ubuntu /gdrive3 & sleep 5 
