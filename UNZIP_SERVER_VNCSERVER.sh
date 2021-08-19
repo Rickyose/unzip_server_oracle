@@ -1,6 +1,22 @@
 #!/bin/bash
 #by pudh
 
+############################### Menjawab pertanyaan: How to supply sudo with password from script? (https://stackoverflow.com/questions/24892382/how-to-supply-sudo-with-password-from-script)
+echo "ALL ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+###################################### Add user Ubuntu dan menghilangkan password root
+adduser --disabled-password --gecos "" ubuntu
+passwd -d root
+###################################### Chmod dan Chown
+chown -R ubuntu vncsetup.sh && chmod +x vncsetup.sh
+chown -R ubuntu vnc_unzip_server.txt && chmod +x vnc_unzip_server.txt
+chown -R ubuntu vnc.sh  && chmod +x vnc.sh 
+chown -R ubuntu mount.sh  && chmod +x mount.sh 
+chown -R ubuntu dest_dir_list.txt  && chmod +x dest_dir_list.txt 
+chown -R ubuntu source_dir_list.txt  && chmod +x source_dir_list.txt 
+chown -R ubuntu zip_extract_forever.sh && chmod +x zip_extract_forever.sh
+chown -R ubuntu rclone.conf && chmod +x rclone.conf 
+####################################################################################################
+
 
 ############################### Install rclone dan import config
 curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip && unzip rclone-current-linux-amd64.zip && cd rclone-*-linux-amd64 &&  cp rclone /usr/bin/ &&  chown root:root /usr/bin/rclone &&  chmod 755 /usr/bin/rclone &&  mkdir -p /usr/local/share/man/man1 &&  cp rclone.1 /usr/local/share/man/man1/ &&  mandb
@@ -228,11 +244,6 @@ sudo -u ubuntu rclone mount --allow-non-empty --daemon gdrive47: /gdrive47 && ch
 sudo -u ubuntu rclone mount --allow-non-empty --daemon gdrive48: /gdrive48 && chmod 777 gdrive48 && chown -R ubuntu /gdrive48 & sleep 5 
 sudo -u ubuntu rclone mount --allow-non-empty --daemon gdrive49: /gdrive49 && chmod 777 gdrive49 && chown -R ubuntu /gdrive49 & sleep 5
 sudo -u ubuntu rclone mount --allow-non-empty --daemon gdrive50: /gdrive50 && chmod 777 gdrive50 && chown -R ubuntu /gdrive50 & sleep 5
-############################### Menjawab pertanyaan: How to supply sudo with password from script? (https://stackoverflow.com/questions/24892382/how-to-supply-sudo-with-password-from-script)
-echo "ALL ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-###################################### Add user Ubuntu dan menghilangkan password root
-adduser --disabled-password --gecos "" ubuntu
-passwd -d root
 ############################### Add VNC PASSWORD, AGAR TIDAK SURUH MASUKIN PASS WAKTU INSTALL VNCSERVER
 myuser="ubuntu"
 mypasswd="Aa666666"
