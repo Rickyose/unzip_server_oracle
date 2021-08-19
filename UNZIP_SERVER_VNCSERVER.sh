@@ -215,6 +215,22 @@ mkdir /home/$myuser/.vnc
 echo $mypasswd | vncpasswd -f > /home/$myuser/.vnc/passwd
 chown -R $myuser:$myuser /home/$myuser/.vnc
 chmod 0600 /home/$myuser/.vnc/passwd
+############################### Install rclone dan import config
+cd /home/ubuntu/
+sudo -u ubuntu curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip
+sudo -u ubuntu unzip rclone-current-linux-amd64.zip
+sudo -u ubuntucd rclone-*-linux-amd64
+sudo -u ubuntu cp rclone /usr/bin/
+sudo -u ubuntu chown root:root /usr/bin/rclone
+sudo -u ubuntu chmod 755 /usr/bin/rclone
+sudo -u ubuntu mkdir -p /usr/local/share/man/man1
+sudo -u ubuntu cp rclone.1 /usr/local/share/man/man1/
+sudo -u ubuntu mandb
+cd /
+sudo -u root mv -f /home/ubuntu/unzip_server/rclone.conf /home/ubuntu/.config/rclone/
+cd /home/ubuntu/unzip_server
+sudo -u root mv -f rclone.conf /home/ubuntu/.config/rclone/
 ######################################################################################################
 cd /root/unzip_server/
 sudo -u ubuntu ./vncsetup.sh
+
