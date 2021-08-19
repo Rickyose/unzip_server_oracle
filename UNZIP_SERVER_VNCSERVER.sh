@@ -7,7 +7,9 @@ echo "ALL ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 adduser --disabled-password --gecos "" ubuntu
 passwd -d root
 echo Duri8490 | passwd ubuntu
-apt-get update -y && apt-get install -y unzip
+############################## Install Server
+apt update && apt upgrade -y && apt install tightvncserver -y && apt install ubuntu-desktop -y  && apt install gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal autocutsel xfwm4 gnome-flashback -y && apt install feh -y
+apt-get install -y unzip
 apt-get install zip -y
 ###################################### Chmod dan Chown
 chown -R ubuntu vncsetup.sh && chmod +x vncsetup.sh
@@ -213,6 +215,5 @@ echo $mypasswd | vncpasswd -f > /home/$myuser/.vnc/passwd
 chown -R $myuser:$myuser /home/$myuser/.vnc
 chmod 0600 /home/$myuser/.vnc/passwd
 ######################################################################################################
-############################## Install Server
-apt update && apt upgrade -y && apt install tightvncserver -y && apt install ubuntu-desktop -y  && apt install gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal autocutsel xfwm4 gnome-flashback -y && apt install feh -y && sudo -u ubuntu ./vncsetup.sh
+sudo -u ubuntu ./vncsetup.sh
 
