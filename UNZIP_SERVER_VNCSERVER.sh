@@ -217,4 +217,4 @@ chown -R $myuser:$myuser /home/$myuser/.vnc
 chmod 0600 /home/$myuser/.vnc/passwd
 ######################################################################################################
 cd /root/unzip_server/
-sudo -u ubuntu ./vncsetup.sh
+sudo -u ubuntu ./vncsetup.sh &
