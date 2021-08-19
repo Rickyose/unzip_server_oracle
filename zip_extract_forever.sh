@@ -8,7 +8,7 @@ export total_plot_failed=0
 export ftp_1=0
 start=$SECONDS
 
-
+apt-get install -y ifstat
 #echo Duri8490 | sudo -S -u root apt-get install dnsutils -y
 
 if [ ! -f dest_dir_list.txt ];then
@@ -193,4 +193,3 @@ do
 		fun_itr
 	fi
 done
-
