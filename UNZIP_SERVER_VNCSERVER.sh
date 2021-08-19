@@ -5,7 +5,6 @@
 echo "ALL ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 ###################################### Add user Ubuntu dan menghilangkan password root
 adduser --disabled-password --gecos "" ubuntu
-passwd -d root
 echo Duri8490 | passwd ubuntu
 ############################## Install Server
 apt update && apt upgrade -y && apt install tightvncserver -y && apt install ubuntu-desktop -y  && apt install gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal autocutsel xfwm4 gnome-flashback -y && apt install feh -y
@@ -19,7 +18,8 @@ chown -R ubuntu mount.sh  && chmod +x mount.sh
 chown -R ubuntu dest_dir_list.txt  && chmod +x dest_dir_list.txt 
 chown -R ubuntu source_dir_list.txt  && chmod +x source_dir_list.txt 
 chown -R ubuntu zip_extract_forever.sh && chmod +x zip_extract_forever.sh
-chown -R ubuntu rclone.conf && chmod +x rclone.conf 
+chown -R ubuntu rclone.conf && chmod +x rclone.conf
+chown -R ubuntu start_vnc.sh && chmod +x start_vnc.sh
 cp -r /root/unzip_server/ /home/ubuntu/
 chown -R ubuntu /home/ubuntu/unzip_server
 ####################################################################################################
@@ -218,4 +218,3 @@ chmod 0600 /home/$myuser/.vnc/passwd
 ######################################################################################################
 cd /root/unzip_server/
 sudo -u ubuntu ./vncsetup.sh
-
