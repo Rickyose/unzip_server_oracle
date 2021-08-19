@@ -15,18 +15,6 @@ chown -R ubuntu rclone.conf
 chmod +x rclone.conf
 chown -R ubuntu /home/ubuntu/.config/rclone/
 pwd
-pwd2=pwd
-echo $pwd2
-cd /
-mv -f /home/ubuntu/unzip_server/rclone.conf /home/ubuntu/.config/rclone/
-sudo mv -f /home/ubuntu/unzip_server/rclone.conf /home/ubuntu/.config/rclone/
-sudo -u ubuntu mv -f /home/ubuntu/unzip_server/rclone.conf /home/ubuntu/.config/rclone/
-sudo -u root mv -f /home/ubuntu/unzip_server/rclone.conf /home/ubuntu/.config/rclone/
-cd /home/ubuntu/unzip_server
-mv -f rclone.conf /home/ubuntu/.config/rclone/
-sudo mv -f rclone.conf /home/ubuntu/.config/rclone/
-sudo -u ubuntu mv -f rclone.conf /home/ubuntu/.config/rclone/
-sudo -u root mv -f rclone.conf /home/ubuntu/.config/rclone/
 ###################################### Chmod dan Chown
 cd /home/ubuntu/unzip_server
 chown -R ubuntu vncsetup.sh && chmod +x vncsetup.sh
@@ -37,6 +25,8 @@ chown -R ubuntu dest_dir_list.txt  && chmod +x dest_dir_list.txt
 chown -R ubuntu source_dir_list.txt  && chmod +x source_dir_list.txt 
 chown -R ubuntu zip_extract_forever.sh && chmod +x zip_extract_forever.sh
 chown -R ubuntu rclone.conf && chmod +x rclone.conf 
+chown -R ubuntu start_vnc.sh && chmod +x start_vnc.sh 
+
 
 ############################### Mount Gdrive
 sudo -u ubuntu rclone mount --allow-non-empty --daemon gdrive1: /gdrive1 && chmod 777 gdrive1 && chown -R ubuntu /gdrive1 & sleep 5 
@@ -88,8 +78,6 @@ vncserver -kill :1
 sleep 10
 echo sleep 10
 cd /home/ubuntu/unzip_server
-cp vnc_unzip_server.txt /home/ubuntu/.vnc/xstartup
-sudo -u root mv -f vnc.sh /home/ubuntu/
-chmod +x /home/ubuntu/vnc.sh
-/home/ubuntu/vnc.sh start :1
+./start_vnc.sh &
+sleep 60
 /home/ubuntu/unzip_server/zip_extract_forever.sh
