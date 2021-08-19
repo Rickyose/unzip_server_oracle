@@ -1,0 +1,16 @@
+/gdrive1/temp
+/gdrive2/temp
+/gdrive3/temp
+/gdrive4/temp
+/gdrive5/temp
+/gdrive6/temp
+/gdrive7/temp
+/gdrive8/temp
+/gdrive9/temp
+/gdrive10/temp
+/gdrive11/temp
+/gdrive12/temp
+/gdrive13/temp
+/gdrive14/temp
+/gdrive15/temp
+/gdrive16/temp
