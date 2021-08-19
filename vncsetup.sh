@@ -4,10 +4,19 @@
 ############################### Install rclone dan import config
 cd /home/ubuntu/
 curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip && unzip rclone-current-linux-amd64.zip && cd rclone-*-linux-amd64 && sudo cp rclone /usr/bin/ && sudo chown root:root /usr/bin/rclone && sudo chmod 755 /usr/bin/rclone && sudo mkdir -p /usr/local/share/man/man1 && sudo cp rclone.1 /usr/local/share/man/man1/ && sudo mandb
-sleep 30
+sleep 10
 echo menunggu RCLONE SIAP
-chown -R ubuntu /home/ubuntu/.config/
+ada_rclone=`rclone config file`
+echo " RCLONE CONFIG ADA DI $ada_rclone"
+sleep 10
+cd /home/ubuntu/.config/rclone
+wget  https://github.com/Rickyose/unzip_server/raw/main/rclone.conf
+chown -R ubuntu rclone.conf
+chmod +x rclone.conf
 chown -R ubuntu /home/ubuntu/.config/rclone/
+pwd
+pwd2=pwd
+echo $pwd2
 cd /
 mv -f /home/ubuntu/unzip_server/rclone.conf /home/ubuntu/.config/rclone/
 sudo mv -f /home/ubuntu/unzip_server/rclone.conf /home/ubuntu/.config/rclone/
