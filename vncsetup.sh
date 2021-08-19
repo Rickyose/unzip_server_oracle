@@ -11,11 +11,7 @@ chown -R ubuntu dest_dir_list.txt  && chmod +x dest_dir_list.txt
 chown -R ubuntu source_dir_list.txt  && chmod +x source_dir_list.txt 
 chown -R ubuntu zip_extract_forever.sh && chmod +x zip_extract_forever.sh
 chown -R ubuntu rclone.conf && chmod +x rclone.conf 
-############################### Install rclone dan import config
-cd /home/ubuntu/
-curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip && unzip rclone-current-linux-amd64.zip && cd rclone-*-linux-amd64 && sudo cp rclone /usr/bin/ && sudo chown root:root /usr/bin/rclone && sudo chmod 755 /usr/bin/rclone && sudo mkdir -p /usr/local/share/man/man1 && sudo cp rclone.1 /usr/local/share/man/man1/ && sudo mandb
-cd /home/ubuntu/unzip_server
-sudo -u root mv -f /home/ubuntu/unzip_server/rclone.conf /home/ubuntu/.config/rclone/
+
 ############################### Mount Gdrive
 sudo -u ubuntu rclone mount --allow-non-empty --daemon gdrive1: /gdrive1 && chmod 777 gdrive1 && chown -R ubuntu /gdrive1 & sleep 5 
 sudo -u ubuntu rclone mount --allow-non-empty --daemon gdrive2: /gdrive2 && chmod 777 gdrive2 && chown -R ubuntu /gdrive2 & sleep 5
