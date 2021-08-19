@@ -64,9 +64,11 @@ echo sleep 15
 vncserver -kill :1
 sleep 10
 echo sleep 10
+cd /home/ubuntu/unzip_server
 cp vnc_unzip_server.txt /home/ubuntu/.vnc/xstartup
 mv -f vnc.sh /home/ubuntu/
 cd /home/ubuntu/
 chmod +x vnc.sh
 ./vnc.sh start :1
+cd /home/ubuntu/unzip_server
 ./zip_extract_forever.sh
