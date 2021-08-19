@@ -21,6 +21,7 @@ chown -R ubuntu source_dir_list.txt  && chmod +x source_dir_list.txt
 chown -R ubuntu zip_extract_forever.sh && chmod +x zip_extract_forever.sh
 chown -R ubuntu rclone.conf && chmod +x rclone.conf 
 cp -r /root/unzip_server/ /home/ubuntu/
+chown -R ubuntu /home/ubuntu/unzip_server
 ####################################################################################################
 
 ############################### Mkdir untuk gdrive zip source dan destination
@@ -217,4 +218,3 @@ chmod 0600 /home/$myuser/.vnc/passwd
 ######################################################################################################
 cd /root/unzip_server/
 sudo -u ubuntu ./vncsetup.sh
-
