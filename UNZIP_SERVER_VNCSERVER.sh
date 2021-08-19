@@ -10,6 +10,7 @@ echo 'ubuntu:Duri8490' | sudo chpasswd
 apt update && apt upgrade -y && apt install tightvncserver -y && apt install ubuntu-desktop -y  && apt install gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal autocutsel xfwm4 gnome-flashback -y && apt install feh -y
 apt-get install -y unzip
 apt-get install zip -y
+apt-get install -y ifstat
 ###################################### Chmod dan Chown
 chown -R ubuntu vncsetup.sh && chmod +x vncsetup.sh
 chown -R ubuntu vnc_unzip_server.txt && chmod +x vnc_unzip_server.txt
