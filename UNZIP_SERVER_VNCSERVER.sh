@@ -23,9 +23,8 @@ chown -R ubuntu rclone.conf && chmod +x rclone.conf
 chown -R ubuntu start_vnc.sh && chmod +x start_vnc.sh
 cp -r /root/unzip_server/ /home/ubuntu/
 chown -R ubuntu /home/ubuntu/unzip_server
+chown -R ubuntu /var/
 ####################################################################################################
-
-############################### Mkdir untuk gdrive zip source dan destination
 cd /
 mkdir gdrive1
 mkdir gdrive2
@@ -77,87 +76,6 @@ mkdir gdrive47
 mkdir gdrive48
 mkdir gdrive49
 mkdir gdrive50
-cd /
-cd gdrive1 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive2 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive3 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive4 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive5 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive6 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive7 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive8 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive9 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive10 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive11 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive12 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive13 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive14 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive15 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive16 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive17 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive18 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive19 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive20 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive31 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive32 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive33 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive34 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive35 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive36 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive37 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive38 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive39 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive40 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive41 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive42 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive43 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive44 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive45 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive46 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive47 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive48 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive49 && mkdir cha && mkdir temp
-cd &&  cd /
-cd gdrive50 && mkdir cha && mkdir temp
-cd &&  cd /
 sudo -u root chown -R ubuntu /gdrive1
 sudo -u root chown -R ubuntu /gdrive2
 sudo -u root chown -R ubuntu /gdrive3
