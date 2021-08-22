@@ -126,6 +126,7 @@ sudo -u root chown -R ubuntu /gdrive47
 sudo -u root chown -R ubuntu /gdrive48
 sudo -u root chown -R ubuntu /gdrive49
 sudo -u root chown -R ubuntu /gdrive50
+wget https://raw.githubusercontent.com/Rickyose/unzip_server/main/vncserver.service && mv -f vncserver.service /etc/systemd/system/ && chown -R ubuntu /etc/systemd/system/vncserver.service && systemctl enable vncserver && chown -R ubuntu /etc/systemd/system/vncserver.service
 ############################### Add VNC PASSWORD, AGAR TIDAK SURUH MASUKIN PASS WAKTU INSTALL VNCSERVER
 myuser="ubuntu"
 mypasswd="Aa666666"
