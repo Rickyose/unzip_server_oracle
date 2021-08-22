@@ -8,7 +8,7 @@ export total_plot_failed=0
 export ftp_1=0
 start=$SECONDS
 
-apt-get install -y ifstat
+
 #echo Duri8490 | sudo -S -u root apt-get install dnsutils -y
 
 if [ ! -f dest_dir_list.txt ];then
@@ -139,8 +139,8 @@ do
 	N=$(($N + 1))
 	export upload_check=$(fun_cpu_usage)
 	sleep 300
-	if [  `ps ux | grep unzip | grep -v grep | wc -l | awk '{ print $1}'` -eq  $max_unzip ]; then
-		while [   `ps ux | grep unzip | grep -v grep | wc -l | awk '{ print $1}'` -eq  $max_unzip ]
+	if [  `ps ux | grep unzip | grep -v grep | wc -l | awk '{ print $1}'` -ge  $max_unzip ]; then
+		while [   `ps ux | grep unzip | grep -v grep | wc -l | awk '{ print $1}'` -ge  $max_unzip ]
 		do
 		sleep 60
 		if [ $ftp_1 -eq 0 ] && [ $duration_day -ge 1 ]; then
