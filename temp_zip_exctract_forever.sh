@@ -201,7 +201,7 @@ do
 		sleep 30
 		ftp_script &
 		echo Menjalankan FTP SCRIPT
-		sleep 30
+		sleep 29
 	else
 		fun_itr
 	fi
