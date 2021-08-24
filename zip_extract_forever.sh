@@ -97,24 +97,31 @@ if [ $upload_check -lt 200000 ];then
 	 zip_count=` find ${v_source_dir} -type f -name "*zip" -mmin +360 |wc -l`
 	 if [ $zip_count -gt 0 ] ;then 
 		echo "oldest file in $v_source_dir is $source_zip .."
-		if [ `ps ux | grep unzip | grep "${v_source_dir}" | wc -l` -eq 0 ];then 
-		old_count_plot=`find ${v_dest_dir}/ -type f -size +100G -printf 1 | wc -c`
-			echo "unzipping ${v_source_dir}/${source_zip} in $v_dest_dir .."
-			cd ${v_dest_dir}
-			find . -type f -size -100G -name \*.plot -delete
-			unzip -o ${v_source_dir}/${source_zip} 
-			sleep 5
-			find ${v_dest_dir}/ -type f -size -100G -name \*.plot -delete
-			sleep 20
-			if [  `find ${v_dest_dir}/ -type f -size +100G -printf 1 | wc -c` -gt  $old_count_plot ];then
-				echo "unzip completed successfully for directory ${v_source_dir}"
-				rm -f ${v_source_dir}/${source_zip} > /dev/null
-				echo "Deleted zip file ${v_source_dir}/${source_zip} successfully"
+		if [ `ps ux | grep unzip | grep "${v_source_dir}" | wc -l` -eq 0 ];then
+			if [ `ls -lR *txt | wc -l` -eq 0 ]; then
+				old_count_plot=`find ${v_dest_dir}/ -type f -size +100G -printf 1 | wc -c`
+				echo "unzipping ${v_source_dir}/${source_zip} in $v_dest_dir .."
+				cd ${v_dest_dir}
+				find . -type f -size -100G -name \*.plot -delete
+				touch `curl ifconfig.me`.txt
+				unzip -o ${v_source_dir}/${source_zip} 
+				sleep 5
+				rm -rf `curl ifconfig.me`.txt
+				sleep 10
+				find ${v_dest_dir}/ -type f -size -100G -name \*.plot -delete
+				sleep 10
+				if [  `find ${v_dest_dir}/ -type f -size +100G -printf 1 | wc -c` -gt  $old_count_plot ];then
+					echo "unzip completed successfully for directory ${v_source_dir}"
+					rm -f ${v_source_dir}/${source_zip} > /dev/null
+					echo "Deleted zip file ${v_source_dir}/${source_zip} successfully"
+				else
+					cd ${v_dest_dir}
+					find . -type f -size -100G -name \*.plot -delete
+				fi 
+				sleep 10
 			else
-			cd ${v_dest_dir}
-			find . -type f -size -100G -name \*.plot -delete
-			fi 
-			sleep 10
+				echo "BARU ADA YG PAKE DI GDRIVE ${v_source_dir}"
+			fi
 		else
 			echo "unzip of directory ${v_source_dir} already  in progress"
 		fi
