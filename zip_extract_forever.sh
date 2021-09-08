@@ -2,20 +2,21 @@
 v_source_dir=null
 v_dest_dir=null
 export max_unzip=4
-export loop=0
+export initiate_start=0
 export total_plot_success=0
 export total_plot_failed=0
 export ftp_1=0
+export ips=`curl ifconfig.me`
+export ftp_on=0
+echo " ips = $ips"
 start=$SECONDS
 
 
-#echo Duri8490 | sudo -S -u root apt-get install dnsutils -y
-
-if [ ! -f dest_dir_list.txt ];then
+if [ ! -f dest_dir_list.txt ]; then
 	echo "destination directories  not exits ,cancelling it"
 	exit 1
 fi
-if [ ! -f source_dir_list.txt ];then
+if [ ! -f source_dir_list.txt ]; then
 	echo " source directories not exists ,cancelling it "
 fi
 
@@ -36,7 +37,7 @@ sleep 60
 
 github_code()
 {
-if [ $loop -eq 1 ]; then
+if [ $initiate_start -eq 1 ]; then
 	while [ 100 -gt 1 ]
 	do
 		rm -rf skripburu2
@@ -52,29 +53,34 @@ fi
 
 ftp_script()
 {
-ip=`curl ifconfig.me`
-multi_line="
-TANGGAL = `TZ=GMT-7 date`
-IP ADDRESS = $ip
-JUMLAH PLOT TILL NOW = $jumlah_plot_sekarang
-SPEED PLOTTING = $average_plot_per_day PLOT/DAY
-JUMLAH PLOT SEMUA $new_total_plot "
-echo "$multi_line"
-echo "$multi_line" > "$ip".csv
-mv -f "$ip".csv /home/ubuntu/Documents/
-if [ `ps ux | grep "python3 -m http.server" | grep -v "grep" | awk '{print $2}'` -gt 0 ]; then
-sleep 1
-else
-mkdir /home/ubuntu/Documents/
-cd /home/ubuntu/Documents/
-python3 -m http.server
-fi
+if [ $initiate_start -eq 1 ]; then
+	if [ 100 -gt 1 ]; then
+		ip=`curl ifconfig.me`
+		multi_line="
+		TANGGAL = `TZ=GMT-7 date`
+		IP ADDRESS = $ip
+		JUMLAH PLOT TILL NOW = $jumlah_plot_sekarang
+		SPEED PLOTTING = $average_plot_per_day PLOT/DAY
+		JUMLAH PLOT SEMUA = $new_total_plot "
 
-##########################################
-if [ $duration_day -ge 1 ]; then
-	sleep 86400
+		mkdir /home/ubuntu/Documents/
+		sleep 5
+		cd /home/ubuntu/Documents/
+		rm -rf "$ip".json
+		while [ `ls | grep "$ip".json | wc -l` -gt 0 ]
+		do
+			sleep 5
+			rm -rf "$ip".json
+		done
+		echo "$multi_line"
+		echo "$multi_line" > /home/ubuntu/Documents/"$ip".json
+		if [ `ps ux | grep "python3 -m http.server" | grep -v "grep" | awk '{print $2}'` -gt 0 ]; then
+			sleep 1
+		else
+			python3 -m http.server
+		fi
+	fi
 fi
-ftp_1=0
 }
 
 fun_cpu_usage()
@@ -92,33 +98,50 @@ v_line_count=`cat dest_dir_list.txt | wc -l`
 
 fun_ext_rem()
 {
-if [ $upload_check -lt 200000 ];then
-     source_zip=$(fun_old_zip_source $v_source_dir)
+if [ $upload_check -lt 200000 ]; then
+     source_zip=`ls -lrth ${v_source_dir} |grep '.zip'|  head -1 | awk '{print $9}'`
 	 zip_count=` find ${v_source_dir} -type f -name "*zip" -mmin +360 |wc -l`
-	 if [ $zip_count -gt 0 ] ;then 
+	 if [ $zip_count -gt 0 ] ; then 
 		echo "oldest file in $v_source_dir is $source_zip .."
-		if [ `ps ux | grep unzip | grep "${v_source_dir}" | wc -l` -eq 0 ];then
-			if [ `ls -lR *txt | wc -l` -eq 0 ]; then
-				old_count_plot=`find ${v_dest_dir}/ -type f -size +100G -printf 1 | wc -c`
-				echo "unzipping ${v_source_dir}/${source_zip} in $v_dest_dir .."
-				cd ${v_dest_dir}
-				find . -type f -size -100G -name \*.plot -delete
-				touch `curl ifconfig.me`.txt
-				unzip -o ${v_source_dir}/${source_zip} 
-				sleep 5
-				rm -rf `curl ifconfig.me`.txt
-				sleep 10
-				find ${v_dest_dir}/ -type f -size -100G -name \*.plot -delete
-				sleep 10
-				if [  `find ${v_dest_dir}/ -type f -size +100G -printf 1 | wc -c` -gt  $old_count_plot ];then
-					echo "unzip completed successfully for directory ${v_source_dir}"
-					rm -f ${v_source_dir}/${source_zip} > /dev/null
-					echo "Deleted zip file ${v_source_dir}/${source_zip} successfully"
-				else
+		if [ `ps ux | grep unzip | grep "${v_source_dir}" | wc -l` -eq 0 ]; then
+			rm -rf ${v_dest_dir}/${ips}.${N}.txt
+			rm -rf ${v_source_dir}/${source_zip}.${N}.penanda.source.unzip
+			rm -rf /home/ubuntu/${ips}.${N}.txt
+			rm -rf /home/ubuntu/${source_zip}.${N}.penanda.source.unzip
+			sleep 3
+			if [ `ls ${v_dest_dir}/ | grep .txt | wc -l` -eq 0 ] && [ `ls ${v_source_dir}/ | grep .unzip | wc -l` -eq 0  ]; then
+				head -c 1000000 </dev/urandom > /home/ubuntu/${ips}.${N}.txt && mv -f /home/ubuntu/${ips}.${N}.txt ${v_dest_dir}/
+				head -c 1000000 </dev/urandom > /home/ubuntu/${source_zip}.${N}.penanda.source.unzip && mv -f /home/ubuntu/${source_zip}.${N}.penanda.source.unzip ${v_source_dir}/
+				sleep 3
+				if [ `wc -c ${v_dest_dir}/${ips}.${N}.txt | awk '{print $1}'` -gt 0 ] && [ `wc -c ${v_source_dir}/${source_zip}.${N}.penanda.source.unzip | awk '{print $1}'` -gt 0 ]; then
+					old_count_plot=`find ${v_dest_dir}/ -type f -size +100G -printf 1 | wc -c`
+					echo "unzipping ${v_source_dir}/${source_zip} in $v_dest_dir .."
 					cd ${v_dest_dir}
 					find . -type f -size -100G -name \*.plot -delete
-				fi 
-				sleep 10
+					unzip -o ${v_source_dir}/${source_zip} 
+					sleep 5
+					rm -rf ${v_dest_dir}/${ips}.${N}.txt
+					rm -rf ${v_source_dir}/${source_zip}.${N}.penanda.source.unzip
+					sleep 10
+					find ${v_dest_dir}/ -type f -size -100G -name \*.plot -delete
+					sleep 10
+					if [  `find ${v_dest_dir}/ -type f -size +100G -printf 1 | wc -c` -gt  $old_count_plot ];then
+						echo "unzip completed successfully for directory ${v_source_dir}"
+						rm -f ${v_source_dir}/${source_zip} > /dev/null
+						echo "Deleted zip file ${v_source_dir}/${source_zip} successfully"
+					else
+						cd ${v_dest_dir}
+						find . -type f -size -100G -name \*.plot -delete
+					fi 
+					sleep 10
+				else
+					rm -rf ${v_dest_dir}/${ips}.${N}.txt
+					rm -rf ${v_source_dir}/${source_zip}.${N}.penanda.source.unzip
+					rm -rf /home/ubuntu/${ips}.${N}.txt
+					rm -rf /home/ubuntu/${source_zip}.${N}.penanda.source.unzip
+					echo "KUOTA UPLOAD SUDAH HABIS DI DRIVE DESTINATION/SOURCE"
+					sleep 5
+				fi
 			else
 				echo "BARU ADA YG PAKE DI GDRIVE ${v_source_dir}"
 			fi
@@ -134,6 +157,7 @@ else
 	
 fi
 }
+
 fun_itr()
 {
 export N=1
@@ -142,25 +166,21 @@ while [ $N -le $v_line_count ]
 do
 	export  v_source_dir=`cat source_dir_list.txt | sed -n "$N"P`
 	export  v_dest_dir=`cat dest_dir_list.txt | sed -n "$N"P`
-	echo $v_dest_dir
+	echo Yg dicek adalah account $v_dest_dir
 	N=$(($N + 1))
 	export upload_check=$(fun_cpu_usage)
-	sleep 300
-	if [  `ps ux | grep unzip | grep -v grep | wc -l | awk '{ print $1}'` -ge  $max_unzip ]; then
-		while [   `ps ux | grep unzip | grep -v grep | wc -l | awk '{ print $1}'` -ge  $max_unzip ]
-		do
+	sleep 120
+	while [   `ps ux | grep unzip | grep -v grep | wc -l | awk '{ print $1}'` -ge  $max_unzip ]
+	do
 		sleep 60
-		if [ $ftp_1 -eq 0 ] && [ $duration_day -ge 1 ]; then
-		export ftp_1=1
-		echo "KIRIM PESAN KE ftp"
-		ftp_script &
-		fi
-		done
+	done
+	if [  `ps ux | grep unzip | grep -v grep | wc -l | awk '{ print $1}'` -ge  $max_unzip ]; then
+	sleep 60
 	else
 		end=$SECONDS
 		duration=$(( ($end - $start)/3600 ))
 		duration_day=$(( ($end - $start)/86400 ))
-		echo "stuff took $duration hours to complete"
+		echo "Skrip sudah berjalan selama $duration jam"
 		export J=1
 		export new_total_plot=0
 		while [ $J -le $gdrive_acc_count ]
@@ -176,27 +196,32 @@ do
 		if [ $duration_day -ge 1 ]; then
 			average_plot_per_day=$(($jumlah_plot_sekarang / $duration_day))
 			echo " AVERAGE SPEED PLOTTING = $average_plot_per_day PLOT/DAY"
+		else
+			average_plot_per_day=0
 		fi
-		sleep 7
+		sleep 3
+		echo Menjalankan FTP SCRIPT
+		sleep 3
 		fun_ext_rem &
+		sleep 8
+		ftp_script &
 	fi
 done
 }
+
 export N=1
 while [ 2 -gt 1 ]
 do
 	echo "PRESS CTRL+C to cancel script"
 	sleep 20
-	if [   $loop -eq  0 ]; then
-		loop=1
+	if [   $initiate_start -eq  0 ]; then
+		initiate_start=1
 		sleep 5
 		echo Menjalankan Github Code
 		github_code &
 		sleep 30
-		ftp_script &
-		echo Menjalankan FTP SCRIPT
-		sleep 30
 	else
 		fun_itr
+		sleep 30
 	fi
 done
