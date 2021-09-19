@@ -245,6 +245,6 @@ do
 		sleep 30
 	else
 		fun_itr
-		sleep 30
+		sleep 33
 	fi
 done
