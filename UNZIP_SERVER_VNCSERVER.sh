@@ -25,7 +25,10 @@ cp -r /root/unzip_server/ /home/ubuntu/
 chown -R ubuntu /home/ubuntu/unzip_server
 chown -R ubuntu /var/
 ####################################################################################################
-cd /
+cd /home/ubuntu/
+mkdir zipdrive
+chown -R ubuntu /home/ubuntu/zipdrive
+cd zipdrive
 mkdir gdrive1
 mkdir gdrive2
 mkdir gdrive3
@@ -76,57 +79,161 @@ mkdir gdrive47
 mkdir gdrive48
 mkdir gdrive49
 mkdir gdrive50
-sudo -u root chown -R ubuntu /gdrive1
-sudo -u root chown -R ubuntu /gdrive2
-sudo -u root chown -R ubuntu /gdrive3
-sudo -u root chown -R ubuntu /gdrive4
-sudo -u root chown -R ubuntu /gdrive5
-sudo -u root chown -R ubuntu /gdrive6
-sudo -u root chown -R ubuntu /gdrive7
-sudo -u root chown -R ubuntu /gdrive8
-sudo -u root chown -R ubuntu /gdrive9
-sudo -u root chown -R ubuntu /gdrive10
-sudo -u root chown -R ubuntu /gdrive11
-sudo -u root chown -R ubuntu /gdrive12
-sudo -u root chown -R ubuntu /gdrive13
-sudo -u root chown -R ubuntu /gdrive14
-sudo -u root chown -R ubuntu /gdrive15
-sudo -u root chown -R ubuntu /gdrive16
-sudo -u root chown -R ubuntu /gdrive17
-sudo -u root chown -R ubuntu /gdrive18
-sudo -u root chown -R ubuntu /gdrive19
-sudo -u root chown -R ubuntu /gdrive20
-sudo -u root chown -R ubuntu /gdrive21
-sudo -u root chown -R ubuntu /gdrive22
-sudo -u root chown -R ubuntu /gdrive23
-sudo -u root chown -R ubuntu /gdrive24
-sudo -u root chown -R ubuntu /gdrive25
-sudo -u root chown -R ubuntu /gdrive26
-sudo -u root chown -R ubuntu /gdrive27
-sudo -u root chown -R ubuntu /gdrive28
-sudo -u root chown -R ubuntu /gdrive29
-sudo -u root chown -R ubuntu /gdrive30
-sudo -u root chown -R ubuntu /gdrive31
-sudo -u root chown -R ubuntu /gdrive32
-sudo -u root chown -R ubuntu /gdrive33
-sudo -u root chown -R ubuntu /gdrive34
-sudo -u root chown -R ubuntu /gdrive35
-sudo -u root chown -R ubuntu /gdrive36
-sudo -u root chown -R ubuntu /gdrive37
-sudo -u root chown -R ubuntu /gdrive38
-sudo -u root chown -R ubuntu /gdrive39
-sudo -u root chown -R ubuntu /gdrive40
-sudo -u root chown -R ubuntu /gdrive41
-sudo -u root chown -R ubuntu /gdrive42
-sudo -u root chown -R ubuntu /gdrive43
-sudo -u root chown -R ubuntu /gdrive44
-sudo -u root chown -R ubuntu /gdrive45
-sudo -u root chown -R ubuntu /gdrive46
-sudo -u root chown -R ubuntu /gdrive47
-sudo -u root chown -R ubuntu /gdrive48
-sudo -u root chown -R ubuntu /gdrive49
-sudo -u root chown -R ubuntu /gdrive50
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive1
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive2
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive3
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive4
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive5
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive6
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive7
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive8
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive9
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive10
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive11
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive12
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive13
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive14
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive15
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive16
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive17
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive18
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive19
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive20
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive21
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive22
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive23
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive24
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive25
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive26
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive27
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive28
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive29
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive30
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive31
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive32
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive33
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive34
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive35
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive36
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive37
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive38
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive39
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive40
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive41
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive42
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive43
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive44
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive45
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive46
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive47
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive48
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive49
+sudo -u root chown -R ubuntu /home/ubuntu/zipdrive/gdrive50
 wget https://raw.githubusercontent.com/Rickyose/unzip_server/main/vncserver.service && mv -f vncserver.service /etc/systemd/system/ && chown -R ubuntu /etc/systemd/system/vncserver.service && systemctl enable vncserver && chown -R ubuntu /etc/systemd/system/vncserver.service
+cd /home/ubuntu/
+mkdir drive
+chown -R ubuntu /home/ubuntu/drive
+cd /home/ubuntu/drive
+mkdir chia1
+mkdir chia2
+mkdir chia3
+mkdir chia4
+mkdir chia5
+mkdir chia6
+mkdir chia7
+mkdir chia8
+mkdir chia9
+mkdir chia10
+mkdir chia11
+mkdir chia12
+mkdir chia13
+mkdir chia14
+mkdir chia15
+mkdir chia16
+mkdir chia17
+mkdir chia18
+mkdir chia19
+mkdir chia20
+mkdir chia21
+mkdir chia22
+mkdir chia23
+mkdir chia24
+mkdir chia25
+mkdir chia26
+mkdir chia27
+mkdir chia28
+mkdir chia29
+mkdir chia30
+mkdir chia31
+mkdir chia32
+mkdir chia33
+mkdir chia34
+mkdir chia35
+mkdir chia36
+mkdir chia37
+mkdir chia38
+mkdir chia39
+mkdir chia40
+mkdir chia41
+mkdir chia42
+mkdir chia43
+mkdir chia44
+mkdir chia45
+mkdir chia46
+mkdir chia47
+mkdir chia48
+mkdir chia49
+mkdir chia50
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia1
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia2
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia3
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia4
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia5
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia6
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia7
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia8
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia9
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia10
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia11
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia12
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia13
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia14
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia15
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia16
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia17
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia18
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia19
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia20
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia21
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia22
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia23
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia24
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia25
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia26
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia27
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia28
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia29
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia30
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia31
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia32
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia33
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia34
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia35
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia36
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia37
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia38
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia39
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia40
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia41
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia42
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia43
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia44
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia45
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia46
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia47
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia48
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia49
+sudo -u root chown -R ubuntu /home/ubuntu/drive/chia50
 ############################### Add VNC PASSWORD, AGAR TIDAK SURUH MASUKIN PASS WAKTU INSTALL VNCSERVER
 myuser="ubuntu"
 mypasswd="Aa666666"
