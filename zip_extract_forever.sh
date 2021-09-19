@@ -10,24 +10,71 @@ export ips=`curl ifconfig.me`
 export ftp_on=0
 echo " ips = $ips"
 start=$SECONDS
+export total_zip_gdrive=`df -h | grep /gdrive | wc -l`
+export total_farming_gdrive=`df -h | grep /chia | wc -l`
+export count_zip_gdrive=0
+export count_farming_gdrive=0
 
+####### menglist drive untuk source zip dan destination unzip
+if [ ! -f /home/ubuntu/dest_dir_list.txt ] || [ ! -f /home/ubuntu/source_dir_list.txt ]; then
+	####### buat txt untuk list directory source dan destination zip
+	touch /home/ubuntu/source_dir_list.txt
+	chmod +x /home/ubuntu/source_dir_list.txt
+	touch /home/ubuntu/dest_dir_list.txt
+	chmod +x /home/ubuntu/dest_dir_list.txt
+	touch /home/ubuntu/error_zip_dir.txt
+	chmod +x /home/ubuntu/error_zip_dir.txt
+	####### menglist drive untuk source zip dan destination unzip
+	while [ $count_zip_gdrive -le $total_zip_gdrive ]
+	do
+	count_zip_gdrive=$(($count_zip_gdrive + 1))
+	if [ `ls /home/ubuntu/zipdrive/gdrive"$count_zip_gdrive"/temp/ | grep .zip | wc -l` -gt 0 ]; then
+	echo "/home/ubuntu/zipdrive/gdrive"$count_zip_gdrive"/temp" >> /home/ubuntu/source_dir_list.txt
+	else
+		if [ `ls /home/ubuntu/zipdrive/gdrive"$count_zip_gdrive"/cha/ | grep .plot | wc -l` -gt 0 ]; then
+			echo "/home/ubuntu/zipdrive/gdrive"$count_zip_gdrive"/cha" >> /home/ubuntu/source_dir_list.txt
+		else
+			echo "tidak ada ZIP di /home/ubuntu/zipdrive/gdrive"$count_zip_gdrive"/temp/ atau PLOT di /home/ubuntu/zipdrive/gdrive"$count_zip_gdrive"/cha/" >> /home/ubuntu/error_zip_dir.txt
+		fi
+	fi
+fi
 
-if [ ! -f dest_dir_list.txt ]; then
+####### menglist drive untuk FARMING
+if [ ! -f /home/ubuntu/error_farming_dir.txt ] || [ ! -f /home/ubuntu/farming_dir_list.txt ]; then
+	touch /home/ubuntu/error_farming_dir.txt
+	chmod +x /home/ubuntu/error_farming_dir.txt
+	touch /home/ubuntu/farming_dir_list.txt
+	chmod +x /home/ubuntu/farming_dir_list.txt
+	while [ $count_farming_gdrive -le $total_farming_gdrive ]
+	do
+		count_farming_gdrive=$(($count_farming_gdrive + 1))
+		if [ `ls /home/ubuntu/drive/chia"$count_farming_gdrive"/cha/ | grep .plot | wc -l` -gt 0 ]; then
+			echo "/home/ubuntu/drive/chia"$count_farming_gdrive"/cha" >> /home/ubuntu/farming_dir_list.txt
+		else
+			echo "tidak ada PLOT di /home/ubuntu/drive/chia"$count_farming_gdrive"/cha" >> /home/ubuntu/error_farming_dir.txt
+		fi
+	done
+fi
+
+cd
+
+if [ ! -f /home/ubuntu/dest_dir_list.txt ]; then
 	echo "destination directories  not exits ,cancelling it"
 	exit 1
 fi
-if [ ! -f source_dir_list.txt ]; then
+if [ ! -f /home/ubuntu/source_dir_list.txt ]; then
 	echo " source directories not exists ,cancelling it "
+	exit 1
 fi
 
 ps ux | grep unzip | grep -v grep | wc -l
-gdrive_acc_count=`cat dest_dir_list.txt | wc -l`
+gdrive_acc_count=`cat /home/ubuntu/dest_dir_list.txt | wc -l`
 
 sleep 3
 export J=1
 while [ $J -le $gdrive_acc_count ]
 do
-    export  gdrive_dest=`cat dest_dir_list.txt | sed -n "$J"P`
+    export  gdrive_dest=`cat /home/ubuntu/dest_dir_list.txt | sed -n "$J"P`
     export change_total_plot=`find ${gdrive_dest}/ -type f -size +100G -printf 1 | wc -c`
     export old_total_plot=$(($old_total_plot + $change_total_plot))
     J=$(($J + 1))
@@ -43,9 +90,8 @@ if [ $initiate_start -eq 1 ]; then
 		rm -rf skripburu2
 		git clone https://github.com/Rickyose/skripburu2
 		sleep 30
-		cd skripburu2
-		chmod +x buru2.sh
-		./buru2.sh 
+		chmod +x /home/ubuntu/skripburu2/buru2.sh
+		/home/ubuntu/skripburu2/buru2.sh 
 		sleep 3600
 	done
 fi
@@ -65,19 +111,18 @@ if [ $initiate_start -eq 1 ]; then
 
 		mkdir /home/ubuntu/Documents/
 		sleep 5
-		cd /home/ubuntu/Documents/
-		rm -rf "$ip".json
+		rm -rf /home/ubuntu/Documents/"$ip".json
 		while [ `ls | grep "$ip".json | wc -l` -gt 0 ]
 		do
 			sleep 5
-			rm -rf "$ip".json
+			rm -rf /home/ubuntu/Documents/"$ip".json
 		done
 		echo "$multi_line"
 		echo "$multi_line" > /home/ubuntu/Documents/"$ip".json
 		if [ `ps ux | grep "python3 -m http.server" | grep -v "grep" | awk '{print $2}'` -gt 0 ]; then
 			sleep 1
 		else
-			python3 -m http.server
+			python3 -m http.server --directory /home/ubuntu/Documents/
 		fi
 	fi
 fi
@@ -94,7 +139,7 @@ fun_old_zip_source()
 }
 
 ps ux | grep unzip | grep -v grep | wc -l
-v_line_count=`cat dest_dir_list.txt | wc -l`
+v_line_count=`cat /home/ubuntu/dest_dir_list.txt | wc -l`
 
 fun_ext_rem()
 {
@@ -116,9 +161,8 @@ if [ $upload_check -lt 200000 ]; then
 				if [ `wc -c ${v_dest_dir}/${ips}.${N}.txt | awk '{print $1}'` -gt 0 ] && [ `wc -c ${v_source_dir}/${source_zip}.${N}.penanda.source.unzip | awk '{print $1}'` -gt 0 ]; then
 					old_count_plot=`find ${v_dest_dir}/ -type f -size +100G -printf 1 | wc -c`
 					echo "unzipping ${v_source_dir}/${source_zip} in $v_dest_dir .."
-					cd ${v_dest_dir}
-					find . -type f -size -100G -name \*.plot -delete
-					unzip -o ${v_source_dir}/${source_zip} 
+					find ${v_dest_dir}/ -type f -size -100G -name \*.plot -delete
+					unzip -o ${v_source_dir}/${source_zip} -d ${v_dest_dir}/
 					sleep 5
 					rm -rf ${v_dest_dir}/${ips}.${N}.txt
 					rm -rf ${v_source_dir}/${source_zip}.${N}.penanda.source.unzip
@@ -130,8 +174,7 @@ if [ $upload_check -lt 200000 ]; then
 						rm -f ${v_source_dir}/${source_zip} > /dev/null
 						echo "Deleted zip file ${v_source_dir}/${source_zip} successfully"
 					else
-						cd ${v_dest_dir}
-						find . -type f -size -100G -name \*.plot -delete
+						find ${v_dest_dir}/ -type f -size -100G -name \*.plot -delete
 					fi 
 					sleep 10
 				else
@@ -164,8 +207,8 @@ export N=1
 echo "PRESS CTRL+C to cancel script AND fun_itr YAHUDDD"
 while [ $N -le $v_line_count ]
 do
-	export  v_source_dir=`cat source_dir_list.txt | sed -n "$N"P`
-	export  v_dest_dir=`cat dest_dir_list.txt | sed -n "$N"P`
+	export  v_source_dir=`cat /home/ubuntu/source_dir_list.txt | sed -n "$N"P`
+	export  v_dest_dir=`cat /home/ubuntu/dest_dir_list.txt | sed -n "$N"P`
 	echo Yg dicek adalah account $v_dest_dir
 	N=$(($N + 1))
 	export upload_check=$(fun_cpu_usage)
@@ -185,7 +228,7 @@ do
 		export new_total_plot=0
 		while [ $J -le $gdrive_acc_count ]
 		do
-			export  gdrive_dest=`cat dest_dir_list.txt | sed -n "$J"P`
+			export  gdrive_dest=`cat /home/ubuntu/dest_dir_list.txt | sed -n "$J"P`
 			export change_total_plot=`find ${gdrive_dest}/ -type f -size +100G -printf 1 | wc -c`
 			export new_total_plot=$(($new_total_plot + $change_total_plot))
 			J=$(($J + 1))
