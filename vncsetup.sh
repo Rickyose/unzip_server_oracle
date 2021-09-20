@@ -280,6 +280,9 @@ vncserver -kill :1
 sleep 10
 echo sleep 10
 cd /home/ubuntu/unzip_server
-./start_vnc.sh &
+cp vnc_unzip_server.txt /home/ubuntu/.vnc/xstartup
+sleep 10
+vncserver
+#./start_vnc.sh &
 sleep 60
 #/home/ubuntu/unzip_server/zip_extract_forever.sh
