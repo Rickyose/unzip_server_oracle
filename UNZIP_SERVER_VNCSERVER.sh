@@ -7,7 +7,7 @@ echo "ALL ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 adduser --disabled-password --gecos "" ubuntu
 echo 'ubuntu:Duri8490' | sudo chpasswd
 ############################## Install Server
-apt update && apt upgrade -y && apt install tightvncserver -y && apt install ubuntu-desktop -y  && apt install gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal autocutsel xfwm4 gnome-flashback -y && apt install feh -y
+apt update && apt upgrade -y && apt install tasksel -y && tasksel install ubuntu-desktop --new-install && apt install gnome-session-flashback -y && apt install tightvncserver -y && apt install ubuntu-desktop -y  && apt install gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal autocutsel xfwm4 gnome-flashback -y && apt install feh -y
 apt-get install -y unzip
 apt-get install zip -y
 apt-get install -y ifstat
