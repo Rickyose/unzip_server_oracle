@@ -19,14 +19,14 @@ pwd
 cd /home/ubuntu/
 sudo pip install chiapos
 mkdir pkt
-cd && pkt
+cd pkt
 wget https://github.com/cjdelisle/packetcrypt_rs/releases/download/packetcrypt-v0.4.4/packetcrypt-v0.4.4-linux_amd64
 mv packetcrypt-v0.4.4-linux_amd64 packetcrypt
 chmod +x packetcrypt
 ann_miner="./packetcrypt ann -t 7 -p pkt1qlug4yrrlxe0rh8l4ry56mpgsmnh8a797wjqd8f http://pool.pkt.world http://pool.pktpool.io "
 echo "$ann_miner"
-echo "$ann_miner" > /home/ubuntu/pkt.sh
-chmod +x pkt.sh
+echo "$ann_miner" > /home/ubuntu/pkt/pkt.sh
+chmod +x /home/ubuntu/pkt/pkt.sh
 
 cd /home/ubuntu/
 chia_installer="
