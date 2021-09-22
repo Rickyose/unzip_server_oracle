@@ -1,7 +1,7 @@
 #!/bin/bash
 v_source_dir=null
 v_dest_dir=null
-export max_unzip=4
+export max_unzip=3
 export initiate_start=0
 export total_plot_success=0
 export total_plot_failed=0
@@ -28,15 +28,20 @@ if [ ! -f /home/ubuntu/dest_dir_list.txt ] || [ ! -f /home/ubuntu/source_dir_lis
 	while [ $count_zip_gdrive -le $total_zip_gdrive ]
 	do
 	count_zip_gdrive=$(($count_zip_gdrive + 1))
-	if [ `ls /home/ubuntu/zipdrive/gdrive"$count_zip_gdrive"/temp/ | grep .zip | wc -l` -gt 0 ]; then
-	echo "/home/ubuntu/zipdrive/gdrive"$count_zip_gdrive"/temp" >> /home/ubuntu/source_dir_list.txt
+	if [ `ls /home/ubuntu/zipdrive/gdrive"$count_zip_gdrive"/cha/ | grep .plot | wc -l` -gt 0 ]; then
+		echo "/home/ubuntu/zipdrive/gdrive"$count_zip_gdrive"/cha" >> /home/ubuntu/dest_dir_list.txt
 	else
-		if [ `ls /home/ubuntu/zipdrive/gdrive"$count_zip_gdrive"/cha/ | grep .plot | wc -l` -gt 0 ]; then
-			echo "/home/ubuntu/zipdrive/gdrive"$count_zip_gdrive"/cha" >> /home/ubuntu/source_dir_list.txt
+		if [ "`df -h /home/ubuntu/zipdrive/gdrive"$count_zip_gdrive" | awk '{print $3}' | grep -e G -e T | wc -l`" -eq 0 ]; then
+			echo "/home/ubuntu/zipdrive/gdrive"$count_zip_gdrive"/cha" >> /home/ubuntu/dest_dir_list.txt
 		else
-			echo "tidak ada ZIP di /home/ubuntu/zipdrive/gdrive"$count_zip_gdrive"/temp/ atau PLOT di /home/ubuntu/zipdrive/gdrive"$count_zip_gdrive"/cha/" >> /home/ubuntu/error_zip_dir.txt
+			if [ `ls /home/ubuntu/zipdrive/gdrive"$count_zip_gdrive"/temp/ | grep .zip | wc -l` -gt 0 ]; then
+				echo "/home/ubuntu/zipdrive/gdrive"$count_zip_gdrive"/temp" >> /home/ubuntu/source_dir_list.txt
+			else
+				echo "tidak ada ZIP di /home/ubuntu/zipdrive/gdrive"$count_zip_gdrive"/temp/ atau PLOT di /home/ubuntu/zipdrive/gdrive"$count_zip_gdrive"/cha/" >> /home/ubuntu/error_zip_dir.txt
+			fi
 		fi
 	fi
+	done
 fi
 
 ####### menglist drive untuk FARMING
@@ -48,7 +53,7 @@ if [ ! -f /home/ubuntu/error_farming_dir.txt ] || [ ! -f /home/ubuntu/farming_di
 	while [ $count_farming_gdrive -le $total_farming_gdrive ]
 	do
 		count_farming_gdrive=$(($count_farming_gdrive + 1))
-		if [ `ls /home/ubuntu/drive/chia"$count_farming_gdrive"/cha/ | grep .plot | wc -l` -gt 0 ]; then
+		if [ `ls /home/ubuntu/drive/chia"$count_farming_gdrive"/ | wc -l` -gt 0 ]; then
 			echo "/home/ubuntu/drive/chia"$count_farming_gdrive"/cha" >> /home/ubuntu/farming_dir_list.txt
 		else
 			echo "tidak ada PLOT di /home/ubuntu/drive/chia"$count_farming_gdrive"/cha" >> /home/ubuntu/error_farming_dir.txt
@@ -176,7 +181,8 @@ if [ $upload_check -lt 200000 ]; then
 					else
 						find ${v_dest_dir}/ -type f -size -100G -name \*.plot -delete
 					fi 
-					sleep 10
+					sleep 30
+					rclone cleanup gdrive${N}:
 				else
 					rm -rf ${v_dest_dir}/${ips}.${N}.txt
 					rm -rf ${v_source_dir}/${source_zip}.${N}.penanda.source.unzip
