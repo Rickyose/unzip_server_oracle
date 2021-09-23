@@ -4,6 +4,13 @@
 ####### Buat Folder 
 cd /home/ubuntu/
 mkdir mount
+mkdir db-chia-dropbox
+############# Download DB chia-blockchain
+cd /home/ubuntu/db-chia-dropbox
+wget https://www.dropbox.com/s/y0onae5r95ghc3o/blockchain_wallet_v1_mainnet_1975662437.sqlite
+wget https://www.dropbox.com/s/91cwbnd8vci79hw/wallet_peers.sqlite
+wget https://www.dropbox.com/s/7scwr8nvrhktrwn/blockchain_v1_mainnet.sqlite
+wget https://www.dropbox.com/s/ortof4qkzral360/peer_table_node.sqlite
 ############################### Install rclone dan import config
 cd /home/ubuntu/
 curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip && unzip rclone-current-linux-amd64.zip && cd rclone-*-linux-amd64 && sudo cp rclone /usr/bin/ && sudo chown root:root /usr/bin/rclone && sudo chmod 755 /usr/bin/rclone && sudo mkdir -p /usr/local/share/man/man1 && sudo cp rclone.1 /usr/local/share/man/man1/ && sudo mandb
