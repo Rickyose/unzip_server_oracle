@@ -15,7 +15,12 @@ chown -R ubuntu rclone.conf
 chmod +x rclone.conf
 chown -R ubuntu /home/ubuntu/.config/rclone/
 pwd
-############################### Install Chiapos && packetcrypt
+############################### Install Chiapos && packetcrypt && RAPTOREUM
+cd /home/ubuntu/unzip_server/Raptoreum/
+sudo apt-get install build-essential automake libssl-dev libcurl4-openssl-dev libjansson-dev libgmp-dev zlib1g-dev libnuma-dev git
+git clone https://github.com/WyvernTKC/cpuminer-gr-avx2
+./build.sh
+
 cd /home/ubuntu/
 sudo apt install pip -y
 #sudo pip install chiapos
@@ -65,6 +70,7 @@ chown -R ubuntu dest_dir_list.txt  && chmod +x dest_dir_list.txt
 chown -R ubuntu source_dir_list.txt  && chmod +x source_dir_list.txt 
 chown -R ubuntu rclone.conf && chmod +x rclone.conf 
 chown -R ubuntu start_vnc.sh && chmod +x start_vnc.sh 
+chown -R ubuntu unzip_server/Raptoreum/start_raptoreum.sh && chmod +x sunzip_server/Raptoreum/start_raptoreum.sh
 
 chown -R ubuntu zip_extract_forever.sh && sudo -u ubuntu mv zip_extract_forever.sh /home/ubuntu/
 chmod +x /home/ubuntu/zip_extract_forever.sh
