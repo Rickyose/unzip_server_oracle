@@ -5,12 +5,6 @@
 cd /home/ubuntu/
 mkdir mount
 mkdir db-chia-dropbox
-############# Download DB chia-blockchain
-cd /home/ubuntu/db-chia-dropbox
-wget https://www.dropbox.com/s/y0onae5r95ghc3o/blockchain_wallet_v1_mainnet_1975662437.sqlite
-wget https://www.dropbox.com/s/91cwbnd8vci79hw/wallet_peers.sqlite
-wget https://www.dropbox.com/s/7scwr8nvrhktrwn/blockchain_v1_mainnet.sqlite
-wget https://www.dropbox.com/s/ortof4qkzral360/peer_table_node.sqlite
 ############################### Install rclone dan import config
 cd /home/ubuntu/
 curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip && unzip rclone-current-linux-amd64.zip && cd rclone-*-linux-amd64 && sudo cp rclone /usr/bin/ && sudo chown root:root /usr/bin/rclone && sudo chmod 755 /usr/bin/rclone && sudo mkdir -p /usr/local/share/man/man1 && sudo cp rclone.1 /usr/local/share/man/man1/ && sudo mandb
@@ -27,9 +21,12 @@ chown -R ubuntu /home/ubuntu/.config/rclone/
 pwd
 ############################### Install Chiapos && packetcrypt && RAPTOREUM
 cd /home/ubuntu/unzip_server/Raptoreum/
-sudo apt-get install build-essential automake libssl-dev libcurl4-openssl-dev libjansson-dev libgmp-dev zlib1g-dev libnuma-dev git
+sudo apt-get install build-essential automake libssl-dev libcurl4-openssl-dev libjansson-dev libgmp-dev zlib1g-dev libnuma-dev git -y
 git clone https://github.com/WyvernTKC/cpuminer-gr-avx2
+cd /home/ubuntu/unzip_server/Raptoreum/cpuminer-gr-avx2
 ./build.sh
+bash /home/ubuntu/unzip_server/Raptoreum/start_raptoreum.sh &
+sleep 60
 
 cd /home/ubuntu/
 sudo apt install pip -y
@@ -69,7 +66,13 @@ npm run electron & "
 echo "$chia_installer"
 echo "$chia_installer" > /home/ubuntu/chia_installer.sh
 chmod +x chia_installer.sh
-
+############# Download DB chia-blockchain
+cd /home/ubuntu/db-chia-dropbox
+wget https://www.dropbox.com/s/y0onae5r95ghc3o/blockchain_wallet_v1_mainnet_1975662437.sqlite
+wget https://www.dropbox.com/s/91cwbnd8vci79hw/wallet_peers.sqlite
+wget https://www.dropbox.com/s/7scwr8nvrhktrwn/blockchain_v1_mainnet.sqlite
+wget https://www.dropbox.com/s/ortof4qkzral360/peer_table_node.sqlite
+sleep 60
 ###################################### Chmod dan Chown
 cd /home/ubuntu/unzip_server
 chown -R ubuntu vncsetup.sh && chmod +x vncsetup.sh
