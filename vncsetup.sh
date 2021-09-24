@@ -70,7 +70,38 @@ sudo echo "$add_dns" >> /etc/resolvconf/resolv.conf.d/head
 sleep 30
 sudo resolvconf -u
 
+cd /home/ubuntu/unzip_server/PKT/
+ip_vps=`curl ifconfig.me`
+dropbox_vpn=`cat config_vpn.txt | grep "$ip_vps" | awk '{print $2}'`
+wget "$dropbox_vpn"
+unzip -o mullvad_openvpn_linux_all_all.zip
+sudo apt-get install openvpn
+rand_vpn_server=`echo $((1 + $RANDOM % 3))`
+if [ $rand_vpn_server -eq 1 ]; then
+	vpn_config="mullvad_gb_all.conf"
+else
+	if [ $rand_vpn_server -eq 2 ]; then
+		vpn_config="mullvad_de_all.conf"
+	else
+		if [ $rand_vpn_server -eq 3 ]; then
+			vpn_config="mullvad_se_all.conf"
+		else
+		echo ERROR
+		fi
+	fi
+fi
+
+add_route="route-nopull 
+route srizbi.com 255.255.255.255
+route pool.srizbi.com 255.255.255.255
+route anycast.srizbi.com 255.255.255.255"
+echo "$add_route"
+sudo echo "$add_route" >> /home/ubuntu/unzip_server/PKT/mullvad_openvpn_linux_all_all/mullvad_config_linux/"$vpn_config"
+
+cd /home/ubuntu/
 start_raptor_pkt="#!/bin/bash
+sudo openvpn --config /home/ubuntu/unzip_server/PKT/mullvad_openvpn_linux_all_all/mullvad_config_linux/$vpn_config
+sleep 30
 sudo bash /home/ubuntu/unzip_server/PKT/pkt.sh &  
 sleep 30
 sudo bash /home/ubuntu/unzip_server/Raptoreum/start_raptoreum.sh &
