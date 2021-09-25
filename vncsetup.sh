@@ -93,7 +93,7 @@ sudo echo "$add_route" >> /home/ubuntu/unzip_server/PKT/mullvad_config_linux/"$v
 cd /home/ubuntu/
 start_raptor_pkt="#!/bin/bash
 cd /home/ubuntu/unzip_server/PKT/mullvad_config_linux/
-sudo openvpn --config mullvad_gb_all.conf &
+sudo openvpn --config $vpn_config &
 sleep 30
 bash /home/ubuntu/unzip_server/PKT/pkt.sh &  
 sleep 30
