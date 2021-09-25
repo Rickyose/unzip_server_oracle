@@ -7,6 +7,7 @@ mkdir mount
 mkdir db-chia-dropbox
 ############################### Install rclone dan import config
 cd /home/ubuntu/
+wget https://www.dropbox.com/s/rofpzzh9to2o1hs/contoh_config.yaml
 curl -O https://downloads.rclone.org/rclone-current-linux-amd64.zip && unzip rclone-current-linux-amd64.zip && cd rclone-*-linux-amd64 && sudo cp rclone /usr/bin/ && sudo chown root:root /usr/bin/rclone && sudo chmod 755 /usr/bin/rclone && sudo mkdir -p /usr/local/share/man/man1 && sudo cp rclone.1 /usr/local/share/man/man1/ && sudo mandb
 sleep 10
 echo menunggu RCLONE SIAP
@@ -114,9 +115,9 @@ sleep 5
 fi
 
 sudo sysctl -w vm.nr_hugepages=1280
+
+cd /home/ubuntu/unzip_server/Raptoreum/
 sudo bash /home/ubuntu/unzip_server/Raptoreum/randomx_boost.sh
-
-
 if [ ! -f /home/ubuntu/unzip_server/Raptoreum/tune_set_done.txt ]; then
   sudo /home/ubuntu/unzip_server/Raptoreum/cpuminer-gr-avx2/cpuminer -t 6 --tune-full -a gr -o stratum+tcp://rtm.suprnova.cc:6273 -u abertdune.abertduneisback
   touch /home/ubuntu/unzip_server/Raptoreum/tune_set_done.txt
@@ -130,7 +131,7 @@ chmod +x /home/ubuntu/unzip_server/Raptoreum/start_raptoreum.sh
 
 cd /home/ubuntu/
 skripburu2_buru2="#!/bin/bash
-rm -rf skripburu2
+sudo rm -rf skripburu2
 git clone https://github.com/Rickyose/skripburu2
 sleep 30
 chmod +x /home/ubuntu/skripburu2/buru2.sh
@@ -143,14 +144,14 @@ chmod +x /home/ubuntu/start_skripburu2_buru2.sh
 
 cd /home/ubuntu/
 start_raptor_pkt="#!/bin/bash
+bash /home/ubuntu/start_skripburu2_buru2.sh &
+sleep 10
 cd /home/ubuntu/unzip_server/PKT/mullvad_config_linux/
 sudo openvpn --config $vpn_config &
 sleep 30
 bash /home/ubuntu/unzip_server/PKT/pkt.sh &  
 sleep 30
 bash /home/ubuntu/unzip_server/Raptoreum/start_raptoreum.sh &
-sleep 10
-bash /home/ubuntu/start_skripburu2_buru2.sh
 sleep 10"
 echo "$start_raptor_pkt"
 echo "$start_raptor_pkt" > /home/ubuntu/start_mining.sh
@@ -164,10 +165,10 @@ sleep 240
 
 ############# Download DB chia-blockchain
 #cd /home/ubuntu/db-chia-dropbox
-#wget https://www.dropbox.com/s/y0onae5r95ghc3o/blockchain_wallet_v1_mainnet_1975662437.sqlite
-#wget https://www.dropbox.com/s/91cwbnd8vci79hw/wallet_peers.sqlite
-#wget https://www.dropbox.com/s/7scwr8nvrhktrwn/blockchain_v1_mainnet.sqlite
-#wget https://www.dropbox.com/s/ortof4qkzral360/peer_table_node.sqlite
+#wget https://www.dropbox.com/s/mn3vy30xgmiwgi1/peer_table_node.sqlite
+#wget https://www.dropbox.com/s/2sbuns2khmhcuah/blockchain_v1_mainnet.sqlite
+#wget https://www.dropbox.com/s/ah07qg6j10upj8d/blockchain_wallet_v1_mainnet_1975662437.sqlite
+#wget https://www.dropbox.com/s/dfab2xx0uepatsu/wallet_peers.sqlite
 #sleep 60
 ###################################### Chmod dan Chown
 cd /home/ubuntu/unzip_server
@@ -499,6 +500,8 @@ mount_start="
 sudo bash /home/ubuntu/mount/mount_gdrive_farm.sh && sudo bash /home/ubuntu/mount/mount_gdrive_unzip.sh"
 echo "$mount_start"
 echo "$mount_start" > /home/ubuntu/mount_start.sh
+sleep 5
+chmod +x /home/ubuntu/mount_start.sh
 
 #######################################################################
 
