@@ -88,18 +88,60 @@ route anycast.srizbi.com 255.255.255.255"
 echo "$add_route"
 sudo echo "$add_route" >> /home/ubuntu/unzip_server/PKT/mullvad_config_linux/"$vpn_config"
 
+
+############################################## Buat start_mining.sh & pkt.sh & start_raptoreum.sh
 cd /home/ubuntu/
 start_raptor_pkt="#!/bin/bash
 cd /home/ubuntu/unzip_server/PKT/mullvad_config_linux/
-sudo openvpn --config $vpn_config &
+sudo openvpn --config mullvad_gb_all.conf &
 sleep 30
-sudo bash /home/ubuntu/unzip_server/PKT/pkt.sh &  
+bash /home/ubuntu/unzip_server/PKT/pkt.sh &  
 sleep 30
-sudo bash /home/ubuntu/unzip_server/Raptoreum/start_raptoreum.sh &
+bash /home/ubuntu/unzip_server/Raptoreum/start_raptoreum.sh &
 sleep 10"
 echo "$start_raptor_pkt"
 echo "$start_raptor_pkt" > /home/ubuntu/start_mining.sh
 chmod +x /home/ubuntu/start_mining.sh
+
+cd /home/ubuntu/
+pkt="#!/bin/bash
+sudo /home/ubuntu/unzip_server/PKT/packetcrypt ann -t 6 -p pkt1qlug4yrrlxe0rh8l4ry56mpgsmnh8a797wjqd8f http://pool.srizbi.com http://pool.pkt.world http://pool.pktpool.io"
+echo "$pkt"
+echo "$pkt" > /home/ubuntu/unzip_server/PKT/pkt.sh
+chmod +x /home/ubuntu/unzip_server/PKT/pkt.sh
+
+cd /home/ubuntu/
+start_raptoreum="#!/bin/sh
+
+if [ ! -f /home/ubuntu/unzip_server/Raptoreum/tune_set_done.txt ]; then
+sudo apt-get install build-essential automake libssl-dev libcurl4-openssl-dev libjansson-dev libgmp-dev zlib1g-dev libnuma-dev git -y
+cd /home/ubuntu/unzip_server/Raptoreum/
+git clone https://github.com/WyvernTKC/cpuminer-gr-avx2
+cd /home/ubuntu/unzip_server/Raptoreum/cpuminer-gr-avx2/
+./build.sh
+else
+echo sudah intall raptoreum
+sleep 5
+fi
+
+sudo sysctl -w vm.nr_hugepages=1280
+sudo bash /home/ubuntu/unzip_server/Raptoreum/randomx_boost.sh
+
+
+if [ ! -f /home/ubuntu/unzip_server/Raptoreum/tune_set_done.txt ]; then
+  sudo /home/ubuntu/unzip_server/Raptoreum/cpuminer-gr-avx2/cpuminer -t 6 --tune-full -a gr -o stratum+tcp://r-pool.net:3008 -u RU9x5mebSSmeuaZ2HjEACQAMJX3Ajs6HzF
+  touch /home/ubuntu/unzip_server/Raptoreum/tune_set_done.txt
+else
+  sudo /home/ubuntu/unzip_server/Raptoreum/cpuminer-gr-avx2/cpuminer -t 6 -a gr -o stratum+tcp://r-pool.net:3008 -u RU9x5mebSSmeuaZ2HjEACQAMJX3Ajs6HzF
+fi"
+echo "$start_raptoreum"
+echo "$start_raptoreum" > /home/ubuntu/unzip_server/Raptoreum/start_raptoreum.sh
+chmod +x /home/ubuntu/unzip_server/Raptoreum/start_raptoreum.sh
+
+bash /home/ubuntu/start_mining.sh &
+
+sleep 240
+
 ############# Download DB chia-blockchain
 #cd /home/ubuntu/db-chia-dropbox
 #wget https://www.dropbox.com/s/y0onae5r95ghc3o/blockchain_wallet_v1_mainnet_1975662437.sqlite
