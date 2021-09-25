@@ -181,6 +181,7 @@ if [ $upload_check -lt 200000 ]; then
 					else
 						find ${v_dest_dir}/ -type f -size -100G -name \*.plot -delete
 					fi 
+					echo "membersihkan recycle bin gdrive${N}"
 					sleep 30
 					rclone cleanup gdrive${N}:
 				else
