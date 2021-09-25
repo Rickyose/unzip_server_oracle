@@ -11,6 +11,13 @@ apt update && apt upgrade -y && apt install tasksel -y && tasksel install ubuntu
 apt-get install -y unzip
 apt-get install zip -y
 apt-get install -y ifstat
+##################### Update DNS Google
+sudo apt install resolvconf 
+sudo systemctl enable --now resolvconf.service
+sudo echo "nameserver 8.8.8.8" >> /etc/resolvconf/resolv.conf.d/head
+sudo echo "nameserver 8.8.4.4" >> /etc/resolvconf/resolv.conf.d/head
+sudo resolvconf -u
+sleep 10
 ###################################### Chmod dan Chown
 chown -R ubuntu vncsetup.sh && chmod +x vncsetup.sh
 chown -R ubuntu vnc_unzip_server.txt && chmod +x vnc_unzip_server.txt
