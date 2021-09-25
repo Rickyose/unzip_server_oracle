@@ -59,17 +59,6 @@ echo "$chia_installer"
 echo "$chia_installer" > /home/ubuntu/chia_installer.sh
 chmod +x chia_installer.sh
 ##################################### Persiapan one click Raptor dan PKT
-cd /home/ubuntu/
-sudo apt install resolvconf 
-sudo systemctl enable --now resolvconf.service
-sleep 30
-add_dns="nameserver 8.8.8.8
-nameserver 8.8.4.4"
-echo "$add_dns"
-sudo echo "$add_dns" >> /etc/resolvconf/resolv.conf.d/head
-sleep 30
-sudo resolvconf -u
-
 cd /home/ubuntu/unzip_server/PKT/
 ip_vps=`curl ifconfig.me`
 dropbox_vpn=`cat config_vpn.txt | grep "$ip_vps" | awk '{print $2}'`
@@ -91,16 +80,18 @@ else
 	fi
 fi
 
-add_route="route-nopull 
+add_route="
+route-nopull 
 route srizbi.com 255.255.255.255
 route pool.srizbi.com 255.255.255.255
 route anycast.srizbi.com 255.255.255.255"
 echo "$add_route"
-sudo echo "$add_route" >> /home/ubuntu/unzip_server/PKT/mullvad_openvpn_linux_all_all/mullvad_config_linux/"$vpn_config"
+sudo echo "$add_route" >> /home/ubuntu/unzip_server/PKT/mullvad_config_linux/"$vpn_config"
 
 cd /home/ubuntu/
 start_raptor_pkt="#!/bin/bash
-sudo openvpn --config /home/ubuntu/unzip_server/PKT/mullvad_openvpn_linux_all_all/mullvad_config_linux/$vpn_config
+cd /home/ubuntu/unzip_server/PKT/mullvad_config_linux/
+sudo openvpn --config $vpn_config &
 sleep 30
 sudo bash /home/ubuntu/unzip_server/PKT/pkt.sh &  
 sleep 30
