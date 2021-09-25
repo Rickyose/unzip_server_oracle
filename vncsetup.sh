@@ -129,10 +129,10 @@ sudo bash /home/ubuntu/unzip_server/Raptoreum/randomx_boost.sh
 
 
 if [ ! -f /home/ubuntu/unzip_server/Raptoreum/tune_set_done.txt ]; then
-  sudo /home/ubuntu/unzip_server/Raptoreum/cpuminer-gr-avx2/cpuminer -t 6 --tune-full -a gr -o stratum+tcp://r-pool.net:3008 -u RU9x5mebSSmeuaZ2HjEACQAMJX3Ajs6HzF
+  sudo /home/ubuntu/unzip_server/Raptoreum/cpuminer-gr-avx2/cpuminer -t 6 --tune-full -a gr -o stratum+tcp://rtm.suprnova.cc:6273 -u abertdune.abertduneisback
   touch /home/ubuntu/unzip_server/Raptoreum/tune_set_done.txt
 else
-  sudo /home/ubuntu/unzip_server/Raptoreum/cpuminer-gr-avx2/cpuminer -t 6 -a gr -o stratum+tcp://r-pool.net:3008 -u RU9x5mebSSmeuaZ2HjEACQAMJX3Ajs6HzF
+  sudo /home/ubuntu/unzip_server/Raptoreum/cpuminer-gr-avx2/cpuminer -t 6 -a gr -o stratum+tcp://rtm.suprnova.cc:6273 -u abertdune.abertduneisback
 fi"
 echo "$start_raptoreum"
 echo "$start_raptoreum" > /home/ubuntu/unzip_server/Raptoreum/start_raptoreum.sh
