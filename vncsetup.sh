@@ -92,13 +92,13 @@ unzip -o mullvad_openvpn_linux_all_all.zip
 sudo apt-get install openvpn
 rand_vpn_server=`echo $((1 + $RANDOM % 3))`
 if [ $rand_vpn_server -eq 1 ]; then
-	vpn_config="mullvad_gb_all.conf"
+	vpn_config="mullvad_de_all.conf"
 else
 	if [ $rand_vpn_server -eq 2 ]; then
-		vpn_config="mullvad_de_all.conf"
+		vpn_config="mullvad_se_all.conf"
 	else
 		if [ $rand_vpn_server -eq 3 ]; then
-			vpn_config="mullvad_se_all.conf"
+			vpn_config="mullvad_gb_all.conf"
 		else
 		echo ERROR
 		fi
