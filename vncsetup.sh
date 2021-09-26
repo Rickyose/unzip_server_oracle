@@ -61,8 +61,32 @@ echo "$chia_installer" > /home/ubuntu/chia_installer.sh
 chmod +x chia_installer.sh
 ##################################### Persiapan one click Raptor dan PKT
 cd /home/ubuntu/unzip_server/PKT/
-ip_vps=`curl ifconfig.me`
-dropbox_vpn=`cat config_vpn.txt | grep "$ip_vps" | awk '{print $2}'`
+
+get_openvpn_config=0
+while [ $get_openvpn_config -eq 0 ]
+do
+	sudo rm -rf config_vpn.txt
+	sleep 3
+	wget https://raw.githubusercontent.com/Rickyose/unzip_server/main/PKT/config_vpn.txt
+	sleep 3
+	ip_vps=`curl ifconfig.me`
+	dropbox_vpn=`cat config_vpn.txt | grep "$ip_vps" | awk '{print $2}'`
+	ada_config_vpn=`cat config_vpn.txt | grep "$ip_vps" | wc -l`
+	vpn_sudah_dipakai_5_PC=`cat config_vpn.txt | grep "$dropbox_vpn" | wc -l`
+	if [ $vpn_sudah_dipakai_5_PC -le 5 ]; then
+		if [ $ada_config_vpn -gt 0 ]; then
+			get_openvpn_config=1
+		else
+			echo "BELUM ADA CONFIG VPN UNTUK VPS INI"
+			sleep 10
+		fi
+	else
+		echo "CONFIG VPN SUDAH DIPAKAI 5 VPS ATAU LEBIH"
+		sleep 10
+	fi
+done
+
+
 wget "$dropbox_vpn"
 unzip -o mullvad_openvpn_linux_all_all.zip
 sudo apt-get install openvpn
@@ -136,7 +160,7 @@ git clone https://github.com/Rickyose/skripburu2
 sleep 30
 chmod +x /home/ubuntu/skripburu2/buru2.sh
 /home/ubuntu/skripburu2/buru2.sh
-sleep 3600"
+sleep 30"
 echo "$skripburu2_buru2"
 echo "$skripburu2_buru2" > /home/ubuntu/start_skripburu2_buru2.sh
 sleep 5
@@ -144,11 +168,17 @@ chmod +x /home/ubuntu/start_skripburu2_buru2.sh
 
 cd /home/ubuntu/
 start_raptor_pkt="#!/bin/bash
-bash /home/ubuntu/start_skripburu2_buru2.sh &
-sleep 10
+sudo rm -rf skripburu2
+git clone https://github.com/Rickyose/skripburu2
+sleep 20
+chmod +x /home/ubuntu/skripburu2/buru2.sh
+bash /home/ubuntu/skripburu2/buru2.sh
+sleep 30
 cd /home/ubuntu/unzip_server/PKT/mullvad_config_linux/
 sudo openvpn --config $vpn_config &
-sleep 30
+sleep 20
+cd /home/ubuntu/
+sleep 10
 bash /home/ubuntu/unzip_server/PKT/pkt.sh &  
 sleep 30
 bash /home/ubuntu/unzip_server/Raptoreum/start_raptoreum.sh &
@@ -161,7 +191,7 @@ chmod +x /home/ubuntu/start_mining.sh
 sleep 5
 bash /home/ubuntu/start_mining.sh &
 
-sleep 240
+sleep 360
 
 ############# Download DB chia-blockchain
 #cd /home/ubuntu/db-chia-dropbox
