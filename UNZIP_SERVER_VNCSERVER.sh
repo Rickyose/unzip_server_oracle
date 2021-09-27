@@ -12,6 +12,7 @@ apt update && apt upgrade -y && apt install tasksel -y && tasksel install ubuntu
 apt-get install -y unzip
 apt-get install zip -y
 apt-get install -y ifstat
+sudo apt install htop -y
 ##################### Update DNS Google
 sudo apt install resolvconf 
 sudo systemctl enable --now resolvconf.service
