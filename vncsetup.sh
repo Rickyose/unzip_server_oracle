@@ -547,4 +547,9 @@ sleep 10
 vncserver
 #./start_vnc.sh &
 sleep 60
+while [ 2 -gt 0 ]
+do
+echo "INSTALASI SELESAI"
+sleep 3
+done
 #/home/ubuntu/unzip_server/zip_extract_forever.sh
