@@ -1,4 +1,3 @@
-188.40.76.119 https://www.dropbox.com/s/9lv0k0pgflm2xg1/mullvad_openvpn_linux_all_all.zip
 65.108.1.215  https://www.dropbox.com/s/9lv0k0pgflm2xg1/mullvad_openvpn_linux_all_all.zip
 65.108.1.214  https://www.dropbox.com/s/9lv0k0pgflm2xg1/mullvad_openvpn_linux_all_all.zip
 65.108.1.213  https://www.dropbox.com/s/9lv0k0pgflm2xg1/mullvad_openvpn_linux_all_all.zip
@@ -9,3 +8,8 @@
 65.108.1.208  https://www.dropbox.com/s/vnwztnw00i6iudc/mullvad_openvpn_linux_all_all.zip
 65.108.1.207  https://www.dropbox.com/s/vnwztnw00i6iudc/mullvad_openvpn_linux_all_all.zip
 65.108.4.227  https://www.dropbox.com/s/vnwztnw00i6iudc/mullvad_openvpn_linux_all_all.zip
+65.108.7.60  https://www.dropbox.com/s/ehl1nzoumxc100e/mullvad_openvpn_linux_all_all.zip
+65.108.7.59  https://www.dropbox.com/s/ehl1nzoumxc100e/mullvad_openvpn_linux_all_all.zip
+65.108.7.58 https://www.dropbox.com/s/ehl1nzoumxc100e/mullvad_openvpn_linux_all_all.zip
+65.108.7.57  https://www.dropbox.com/s/ehl1nzoumxc100e/mullvad_openvpn_linux_all_all.zip
+65.108.7.56  https://www.dropbox.com/s/ehl1nzoumxc100e/mullvad_openvpn_linux_all_all.zip
