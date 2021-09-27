@@ -194,12 +194,12 @@ bash /home/ubuntu/start_mining.sh &
 sleep 360
 
 ############# Download DB chia-blockchain
-cd /home/ubuntu/db-chia-dropbox
-wget https://www.dropbox.com/s/9h1rxt1zcosjrwe/blockchain_v1_mainnet.sqlite
-wget https://www.dropbox.com/s/0srq1dna9o7encu/blockchain_wallet_v1_mainnet_1975662437.sqlite
-wget https://www.dropbox.com/s/kepmbmur43tf5qx/peer_table_node.sqlite
-wget https://www.dropbox.com/s/xm5ew73n2agrcbb/wallet_peers.sqlite
-sleep 60
+#cd /home/ubuntu/db-chia-dropbox
+#wget https://www.dropbox.com/s/9h1rxt1zcosjrwe/blockchain_v1_mainnet.sqlite
+#wget https://www.dropbox.com/s/0srq1dna9o7encu/blockchain_wallet_v1_mainnet_1975662437.sqlite
+#wget https://www.dropbox.com/s/kepmbmur43tf5qx/peer_table_node.sqlite
+#wget https://www.dropbox.com/s/xm5ew73n2agrcbb/wallet_peers.sqlite
+#sleep 60
 ###################################### Chmod dan Chown
 cd /home/ubuntu/unzip_server
 chown -R ubuntu vncsetup.sh && chmod +x vncsetup.sh
