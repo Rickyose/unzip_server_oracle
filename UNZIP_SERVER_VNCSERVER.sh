@@ -6,6 +6,7 @@ echo "ALL ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 ###################################### Add user Ubuntu dan menghilangkan password root
 adduser --disabled-password --gecos "" ubuntu
 echo 'ubuntu:Duri8490' | sudo chpasswd
+echo 'root:Duri8490' | sudo chpasswd
 ############################## Install Server
 apt update && apt upgrade -y && apt install tasksel -y && tasksel install ubuntu-desktop --new-install && apt install gnome-session-flashback -y && apt install tightvncserver -y && apt install ubuntu-desktop -y  && apt install gnome-panel gnome-settings-daemon metacity nautilus gnome-terminal autocutsel xfwm4 gnome-flashback -y && apt install feh -y
 apt-get install -y unzip
