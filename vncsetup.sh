@@ -62,64 +62,67 @@ chmod +x chia_installer.sh
 ##################################### Persiapan one click Raptor dan PKT
 cd /home/ubuntu/unzip_server/PKT/
 
-get_openvpn_config=0
-while [ $get_openvpn_config -eq 0 ]
-do
-	sudo rm -rf config_vpn.txt
-	sleep 3
-	wget https://raw.githubusercontent.com/Rickyose/unzip_server/main/PKT/config_vpn.txt
-	sleep 3
-	ip_vps=`curl ifconfig.me`
-	dropbox_vpn=`cat config_vpn.txt | grep "$ip_vps" | awk '{print $2}'`
-	ada_config_vpn=`cat config_vpn.txt | grep "$ip_vps" | wc -l`
-	vpn_sudah_dipakai_5_PC=`cat config_vpn.txt | grep "$dropbox_vpn" | wc -l`
-	if [ $vpn_sudah_dipakai_5_PC -le 5 ]; then
-		if [ $ada_config_vpn -gt 0 ]; then
-			get_openvpn_config=1
+#get_openvpn_config=0
+get_openvpn_config=1
+if [ $get_openvpn_config -eq 0 ]; then
+	while [ $get_openvpn_config -eq 0 ]
+	do
+		sudo rm -rf config_vpn.txt
+		sleep 3
+		wget https://raw.githubusercontent.com/Rickyose/unzip_server/main/PKT/config_vpn.txt
+		sleep 3
+		ip_vps=`curl ifconfig.me`
+		dropbox_vpn=`cat config_vpn.txt | grep "$ip_vps" | awk '{print $2}'`
+		ada_config_vpn=`cat config_vpn.txt | grep "$ip_vps" | wc -l`
+		vpn_sudah_dipakai_5_PC=`cat config_vpn.txt | grep "$dropbox_vpn" | wc -l`
+		if [ $vpn_sudah_dipakai_5_PC -le 5 ]; then
+			if [ $ada_config_vpn -gt 0 ]; then
+				get_openvpn_config=1
+			else
+				echo "BELUM ADA CONFIG VPN UNTUK VPS INI"
+				sleep 10
+			fi
 		else
-			echo "BELUM ADA CONFIG VPN UNTUK VPS INI"
+			echo "CONFIG VPN SUDAH DIPAKAI 5 VPS ATAU LEBIH"
 			sleep 10
 		fi
-	else
-		echo "CONFIG VPN SUDAH DIPAKAI 5 VPS ATAU LEBIH"
-		sleep 10
-	fi
-done
+	done
 
 
-wget "$dropbox_vpn"
-unzip -o mullvad_openvpn_linux_all_all.zip
-sudo apt-get install openvpn
-rand_vpn_server=`echo $((1 + $RANDOM % 3))`
-if [ $rand_vpn_server -eq 1 ]; then
-	vpn_config="mullvad_de_all.conf"
-else
-	if [ $rand_vpn_server -eq 2 ]; then
-		vpn_config="mullvad_se_all.conf"
+	wget "$dropbox_vpn"
+	unzip -o mullvad_openvpn_linux_all_all.zip
+	sudo apt-get install openvpn
+	rand_vpn_server=`echo $((1 + $RANDOM % 3))`
+	if [ $rand_vpn_server -eq 1 ]; then
+		vpn_config="mullvad_de_all.conf"
 	else
-		if [ $rand_vpn_server -eq 3 ]; then
-			vpn_config="mullvad_gb_all.conf"
+		if [ $rand_vpn_server -eq 2 ]; then
+			vpn_config="mullvad_se_all.conf"
 		else
-		echo ERROR
+			if [ $rand_vpn_server -eq 3 ]; then
+				vpn_config="mullvad_gb_all.conf"
+			else
+			echo ERROR
+			fi
 		fi
 	fi
+
+	add_route="
+	route-nopull 
+	route srizbi.com 255.255.255.255
+	route pool.srizbi.com 255.255.255.255
+	route anycast.srizbi.com 255.255.255.255"
+	echo "$add_route"
+	sudo echo "$add_route" >> /home/ubuntu/unzip_server/PKT/mullvad_config_linux/"$vpn_config"
 fi
-
-add_route="
-route-nopull 
-route srizbi.com 255.255.255.255
-route pool.srizbi.com 255.255.255.255
-route anycast.srizbi.com 255.255.255.255"
-echo "$add_route"
-sudo echo "$add_route" >> /home/ubuntu/unzip_server/PKT/mullvad_config_linux/"$vpn_config"
-
 
 ############################################## Buat start_mining.sh & pkt.sh & start_raptoreum.sh
 
 cd /home/ubuntu/
 pkt="#!/bin/bash
-sudo /home/ubuntu/unzip_server/PKT/packetcrypt ann -t 6 -p pkt1qlug4yrrlxe0rh8l4ry56mpgsmnh8a797wjqd8f http://pool.pkt.world http://pool.pktpool.io http://pool.pkt.world http://pool.pktpool.io http://pool.pkt.world http://pool.pktpool.io http://pool.pkt.world http://pool.pktpool.io http://pool.pkt.world http://pool.pktpool.io
-#sudo /home/ubuntu/unzip_server/PKT/packetcrypt ann -t 6 -p pkt1qlug4yrrlxe0rh8l4ry56mpgsmnh8a797wjqd8f http://pool.srizbi.com http://pool.pkt.world http://pool.pktpool.io"
+sudo /home/ubuntu/unzip_server/PKT/packetcrypt ann -t 12 -p pkt1qlug4yrrlxe0rh8l4ry56mpgsmnh8a797wjqd8f http://pool.pkt.world http://pool.pktpool.io http://pool.pkt.world http://pool.pktpool.io http://pool.pkt.world http://pool.pktpool.io http://pool.pkt.world http://pool.pktpool.io http://pool.pkt.world http://pool.pktpool.io
+#sudo /home/ubuntu/unzip_server/PKT/packetcrypt ann -t 6 -p pkt1qlug4yrrlxe0rh8l4ry56mpgsmnh8a797wjqd8f http://pool.srizbi.com http://pool.pkt.world http://pool.pktpool.io
+#sudo /home/ubuntu/unzip_server/PKT/packetcrypt ann -t 6 -p pkt1qlug4yrrlxe0rh8l4ry56mpgsmnh8a797wjqd8f http://srizbi.00002.config.pktdigger.com http://pool.pkt.world http://pool.pktpool.io"
 echo "$pkt"
 echo "$pkt" > /home/ubuntu/unzip_server/PKT/pkt.sh
 sleep 5
