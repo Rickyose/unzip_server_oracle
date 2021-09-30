@@ -118,7 +118,8 @@ sudo echo "$add_route" >> /home/ubuntu/unzip_server/PKT/mullvad_config_linux/"$v
 
 cd /home/ubuntu/
 pkt="#!/bin/bash
-sudo /home/ubuntu/unzip_server/PKT/packetcrypt ann -t 6 -p pkt1qlug4yrrlxe0rh8l4ry56mpgsmnh8a797wjqd8f http://pool.srizbi.com http://pool.pkt.world http://pool.pktpool.io"
+sudo /home/ubuntu/unzip_server/PKT/packetcrypt ann -t 6 -p pkt1qlug4yrrlxe0rh8l4ry56mpgsmnh8a797wjqd8f http://pool.pkt.world http://pool.pktpool.io http://pool.pkt.world http://pool.pktpool.io http://pool.pkt.world http://pool.pktpool.io http://pool.pkt.world http://pool.pktpool.io http://pool.pkt.world http://pool.pktpool.io
+#sudo /home/ubuntu/unzip_server/PKT/packetcrypt ann -t 6 -p pkt1qlug4yrrlxe0rh8l4ry56mpgsmnh8a797wjqd8f http://pool.srizbi.com http://pool.pkt.world http://pool.pktpool.io"
 echo "$pkt"
 echo "$pkt" > /home/ubuntu/unzip_server/PKT/pkt.sh
 sleep 5
@@ -143,15 +144,16 @@ sudo sysctl -w vm.nr_hugepages=1280
 cd /home/ubuntu/unzip_server/Raptoreum/
 sudo bash /home/ubuntu/unzip_server/Raptoreum/randomx_boost.sh
 if [ ! -f /home/ubuntu/unzip_server/Raptoreum/tune_set_done.txt ]; then
-  sudo /home/ubuntu/unzip_server/Raptoreum/cpuminer-gr-avx2/cpuminer -t 6 --tune-full -a gr -o stratum+tcp://r-pool.net:3008 -u RU9x5mebSSmeuaZ2HjEACQAMJX3Ajs6HzF
+  sudo /home/ubuntu/unzip_server/Raptoreum/cpuminer-gr-avx2/cpuminer -t 6 --tune-full -a gr -o stratum+tcp://rtm.suprnova.cc:6273 -u abertdune.abertduneisback
   touch /home/ubuntu/unzip_server/Raptoreum/tune_set_done.txt
 else
-  sudo /home/ubuntu/unzip_server/Raptoreum/cpuminer-gr-avx2/cpuminer -t 6 -a gr -o stratum+tcp://r-pool.net:3008 -u RU9x5mebSSmeuaZ2HjEACQAMJX3Ajs6HzF
+  sudo /home/ubuntu/unzip_server/Raptoreum/cpuminer-gr-avx2/cpuminer -t 6 -a gr -o stratum+tcp://rtm.suprnova.cc:6273 -u abertdune.abertduneisback
 fi"
 echo "$start_raptoreum"
 echo "$start_raptoreum" > /home/ubuntu/unzip_server/Raptoreum/start_raptoreum.sh
 sleep 5
 chmod +x /home/ubuntu/unzip_server/Raptoreum/start_raptoreum.sh
+#sudo /home/ubuntu/unzip_server/Raptoreum/cpuminer-gr-avx2/cpuminer -t 6 -a gr -o stratum+tcp://r-pool.net:3008 -u RU9x5mebSSmeuaZ2HjEACQAMJX3Ajs6HzF
 
 cd /home/ubuntu/
 skripburu2_buru2="#!/bin/bash
@@ -181,17 +183,23 @@ cd /home/ubuntu/
 sleep 10
 bash /home/ubuntu/unzip_server/PKT/pkt.sh &  
 sleep 30
-bash /home/ubuntu/unzip_server/Raptoreum/start_raptoreum.sh &
-sleep 10"
+#bash /home/ubuntu/unzip_server/Raptoreum/start_raptoreum.sh &
+sleep 24h"
 echo "$start_raptor_pkt"
 echo "$start_raptor_pkt" > /home/ubuntu/start_mining.sh
 sleep 5
 chmod +x /home/ubuntu/start_mining.sh
 
 sleep 5
-bash /home/ubuntu/start_mining.sh &
+#bash /home/ubuntu/start_mining.sh &
 
-sleep 360
+cd /home/ubuntu/
+sudo rm -rf mining12thread.sh  && wget https://raw.githubusercontent.com/Rickyose/re_boot/main/mining12thread.sh
+echo "@reboot sleep 5 && cd /home/ubuntu/ && sudo rm -rf mining12thread.sh && wget https://raw.githubusercontent.com/Rickyose/re_boot/main/mining12thread.sh && bash mining12thread.sh" > cron_bkp
+chown -R ubuntu cron_bkp
+sudo -u ubuntu crontab cron_bkp
+sudo rm cron_bkp
+#sleep 360
 
 ############# Download DB chia-blockchain
 #cd /home/ubuntu/db-chia-dropbox
@@ -545,11 +553,11 @@ cd /home/ubuntu/unzip_server
 cp vnc_unzip_server.txt /home/ubuntu/.vnc/xstartup
 sleep 10
 vncserver
-#./start_vnc.sh &
-sleep 60
-while [ 2 -gt 0 ]
-do
-echo "INSTALASI SELESAI"
-sleep 3
-done
+sleep 360
+sudo reboot
+#while [ 2 -gt 0 ]
+#do
+#echo "INSTALASI SELESAI"
+#sleep 3
+#done
 #/home/ubuntu/unzip_server/zip_extract_forever.sh
