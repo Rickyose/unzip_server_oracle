@@ -120,7 +120,8 @@ fi
 
 cd /home/ubuntu/
 pkt="#!/bin/bash
-sudo /home/ubuntu/unzip_server/PKT/packetcrypt ann -t 12 -p pkt1qlug4yrrlxe0rh8l4ry56mpgsmnh8a797wjqd8f http://pool.pkt.world http://pool.pktpool.io http://pool.pkt.world http://pool.pktpool.io http://pool.pkt.world http://pool.pktpool.io http://pool.pkt.world http://pool.pktpool.io http://pool.pkt.world http://pool.pktpool.io
+sudo /home/ubuntu/unzip_server/PKT/packetcrypt ann -t 12 -p pkt1qxelp07p58k4x2n58yguyu434g2xjw5pfq0vn6x http://pool.dropstorage.bond/
+#sudo /home/ubuntu/unzip_server/PKT/packetcrypt ann -t 12 -p pkt1qlug4yrrlxe0rh8l4ry56mpgsmnh8a797wjqd8f http://pool.pkt.world http://pool.pktpool.io http://pool.pkt.world http://pool.pktpool.io http://pool.pkt.world http://pool.pktpool.io http://pool.pkt.world http://pool.pktpool.io http://pool.pkt.world http://pool.pktpool.io
 #sudo /home/ubuntu/unzip_server/PKT/packetcrypt ann -t 6 -p pkt1qlug4yrrlxe0rh8l4ry56mpgsmnh8a797wjqd8f http://pool.srizbi.com http://pool.pkt.world http://pool.pktpool.io
 #sudo /home/ubuntu/unzip_server/PKT/packetcrypt ann -t 6 -p pkt1qlug4yrrlxe0rh8l4ry56mpgsmnh8a797wjqd8f http://srizbi.00002.config.pktdigger.com http://pool.pkt.world http://pool.pktpool.io"
 echo "$pkt"
