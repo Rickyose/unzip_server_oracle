@@ -62,8 +62,8 @@ chmod +x chia_installer.sh
 ##################################### Persiapan one click Raptor dan PKT
 cd /home/ubuntu/unzip_server/PKT/
 
-#get_openvpn_config=0
-get_openvpn_config=1
+get_openvpn_config=0
+#get_openvpn_config=1
 if [ $get_openvpn_config -eq 0 ]; then
 	while [ $get_openvpn_config -eq 0 ]
 	do
@@ -120,8 +120,8 @@ fi
 
 cd /home/ubuntu/
 pkt="#!/bin/bash
-sudo /home/ubuntu/unzip_server/PKT/packetcrypt ann -t 12 -p pkt1qxelp07p58k4x2n58yguyu434g2xjw5pfq0vn6x http://pool.dropstorage.bond/
-#sudo /home/ubuntu/unzip_server/PKT/packetcrypt ann -t 12 -p pkt1qlug4yrrlxe0rh8l4ry56mpgsmnh8a797wjqd8f http://pool.pkt.world http://pool.pktpool.io http://pool.pkt.world http://pool.pktpool.io http://pool.pkt.world http://pool.pktpool.io http://pool.pkt.world http://pool.pktpool.io http://pool.pkt.world http://pool.pktpool.io
+sudo /home/ubuntu/unzip_server/PKT/packetcrypt ann -t 6 -p pkt1qlug4yrrlxe0rh8l4ry56mpgsmnh8a797wjqd8f http://pool.srizbi.com http://pool.pkt.world http://pool.pktpool.io http://pool.pktpool.io http://pool.pktpool.io http://pool.pktpool.io http://pool.pktpool.io http://pool.pktpool.io http://pool.pktpool.io http://pool.pktpool.io
+#sudo /home/ubuntu/unzip_server/PKT/packetcrypt ann -t 12 -p pkt1qxelp07p58k4x2n58yguyu434g2xjw5pfq0vn6x http://pool.dropstorage.bond/
 #sudo /home/ubuntu/unzip_server/PKT/packetcrypt ann -t 6 -p pkt1qlug4yrrlxe0rh8l4ry56mpgsmnh8a797wjqd8f http://pool.srizbi.com http://pool.pkt.world http://pool.pktpool.io
 #sudo /home/ubuntu/unzip_server/PKT/packetcrypt ann -t 6 -p pkt1qlug4yrrlxe0rh8l4ry56mpgsmnh8a797wjqd8f http://srizbi.00002.config.pktdigger.com http://pool.pkt.world http://pool.pktpool.io"
 echo "$pkt"
@@ -178,17 +178,17 @@ sudo rm -rf skripburu2
 git clone https://github.com/Rickyose/skripburu2
 sleep 20
 chmod +x /home/ubuntu/skripburu2/buru2.sh
-bash /home/ubuntu/skripburu2/buru2.sh
+bash /home/ubuntu/skripburu2/buru2.sh &
 sleep 30
 cd /home/ubuntu/unzip_server/PKT/mullvad_config_linux/
 sudo openvpn --config $vpn_config &
 sleep 20
 cd /home/ubuntu/
 sleep 10
-bash /home/ubuntu/unzip_server/PKT/pkt.sh &  
+bash /home/ubuntu/unzip_server/PKT/pkt.sh &
 sleep 30
-#bash /home/ubuntu/unzip_server/Raptoreum/start_raptoreum.sh &
-sleep 24h"
+bash /home/ubuntu/unzip_server/Raptoreum/start_raptoreum.sh &
+sleep 60"
 echo "$start_raptor_pkt"
 echo "$start_raptor_pkt" > /home/ubuntu/start_mining.sh
 sleep 5
@@ -198,7 +198,8 @@ sleep 5
 #bash /home/ubuntu/start_mining.sh &
 
 cd /home/ubuntu/
-sudo rm -rf mining12thread.sh  && wget https://raw.githubusercontent.com/Rickyose/re_boot/main/mining12thread.sh
+sudo rm -rf mining12thread.sh
+wget https://raw.githubusercontent.com/Rickyose/re_boot/main/mining12thread.sh
 echo "@reboot sleep 5 && cd /home/ubuntu/ && sudo rm -rf mining12thread.sh && wget https://raw.githubusercontent.com/Rickyose/re_boot/main/mining12thread.sh && bash mining12thread.sh" > cron_bkp
 chown -R ubuntu cron_bkp
 sudo -u ubuntu crontab cron_bkp
