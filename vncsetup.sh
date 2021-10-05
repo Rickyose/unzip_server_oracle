@@ -75,8 +75,9 @@ if [ $get_openvpn_config -eq 0 ]; then
 		dropbox_vpn=`cat config_vpn.txt | grep "$ip_vps" | awk '{print $2}'`
 		ada_config_vpn=`cat config_vpn.txt | grep "$ip_vps" | wc -l`
 		vpn_sudah_dipakai_5_PC=`cat config_vpn.txt | grep "$dropbox_vpn" | wc -l`
-		if [ $vpn_sudah_dipakai_5_PC -le 5 ]; then
-			if [ $ada_config_vpn -gt 0 ]; then
+		dummy_vpn=`cat config_vpn.txt | grep "$ip_vps" | awk '{print $2}'`
+		if [ $vpn_sudah_dipakai_5_PC -le 5 ] || [ $dummy_vpn -eq 0 ]; then
+			if [ $ada_config_vpn -gt 0 ] || [ $dummy_vpn -eq 0 ]; then
 				get_openvpn_config=1
 			else
 				echo "BELUM ADA CONFIG VPN UNTUK VPS INI"
