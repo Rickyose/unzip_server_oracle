@@ -1,7 +1,8 @@
+#IP VPS #VPN  #PROXY URL  #MULTIPLE SRIZ
 188.40.76.119 0
 65.108.1.215  0 http://srizbi.00005.config.pktdigger.com  0
 65.108.1.214  0 http://srizbi.00005.config.pktdigger.com  0
-65.108.1.213  https://www.dropbox.com/s/9lv0k0pgflm2xg1/mullvad_openvpn_linux_all_all.zip http://srizbi.00002.config.pktdigger.com  6
+65.108.1.213  https://www.dropbox.com/s/9lv0k0pgflm2xg1/mullvad_openvpn_linux_all_all.zip http://srizbi.00002.config.pktdigger.com  4
 65.108.1.212  https://www.dropbox.com/s/9lv0k0pgflm2xg1/mullvad_openvpn_linux_all_all.zip http://srizbi.00002.config.pktdigger.com  3
 65.108.1.211  https://www.dropbox.com/s/ehl1nzoumxc100e/mullvad_openvpn_linux_all_all.zip http://srizbi.00002.config.pktdigger.com  3
 65.108.1.210  https://www.dropbox.com/s/9lv0k0pgflm2xg1/mullvad_openvpn_linux_all_all.zip http://srizbi.00002.config.pktdigger.com  3
