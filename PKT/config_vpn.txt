@@ -16,7 +16,6 @@
 65.108.7.57 https://www.dropbox.com/s/ehl1nzoumxc100e/mullvad_openvpn_linux_all_all.zip http://s.config.freikick.com 0
  https://www.dropbox.com/s/ehl1nzoumxc100e/mullvad_openvpn_linux_all_all.zip http://s.config.freikick.com 0
  https://www.dropbox.com/s/ehl1nzoumxc100e/mullvad_openvpn_linux_all_all.zip http://s.config.freikick.com 0
-65.108.7.54(SUDAH TIDAK PAKE VPS INI) https://www.dropbox.com/s/ehl1nzoumxc100e/mullvad_openvpn_linux_all_all.zip
 65.108.7.53 https://www.dropbox.com/s/o0cfl8z3qkaknv9/mullvad_openvpn_linux_all_all.zip http://s.config.freikick.com 0
 65.108.7.52 https://www.dropbox.com/s/o0cfl8z3qkaknv9/mullvad_openvpn_linux_all_all.zip http://s.config.freikick.com 0
 65.108.7.51 https://www.dropbox.com/s/o0cfl8z3qkaknv9/mullvad_openvpn_linux_all_all.zip http://s.config.freikick.com 0
