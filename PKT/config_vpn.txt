@@ -12,10 +12,10 @@
 65.108.4.227  https://www.dropbox.com/s/vnwztnw00i6iudc/mullvad_openvpn_linux_all_all.zip http://srizbi.00006.config.pktdigger.com  0
 65.108.7.60 https://www.dropbox.com/s/vnwztnw00i6iudc/mullvad_openvpn_linux_all_all.zip http://srizbi.00006.config.pktdigger.com  0
 65.108.7.59 https://www.dropbox.com/s/vnwztnw00i6iudc/mullvad_openvpn_linux_all_all.zip http://srizbi.00006.config.pktdigger.com  0
-65.108.7.58 https://www.dropbox.com/s/ehl1nzoumxc100e/mullvad_openvpn_linux_all_all.zip http://srizbi.00006.config.pktdigger.com  0
+ https://www.dropbox.com/s/ehl1nzoumxc100e/mullvad_openvpn_linux_all_all.zip http://srizbi.00006.config.pktdigger.com  0
 65.108.7.57 https://www.dropbox.com/s/ehl1nzoumxc100e/mullvad_openvpn_linux_all_all.zip http://s.config.freikick.com 0
-65.108.7.56 https://www.dropbox.com/s/ehl1nzoumxc100e/mullvad_openvpn_linux_all_all.zip http://s.config.freikick.com 0
-65.108.7.55 https://www.dropbox.com/s/ehl1nzoumxc100e/mullvad_openvpn_linux_all_all.zip http://s.config.freikick.com 0
+ https://www.dropbox.com/s/ehl1nzoumxc100e/mullvad_openvpn_linux_all_all.zip http://s.config.freikick.com 0
+ https://www.dropbox.com/s/ehl1nzoumxc100e/mullvad_openvpn_linux_all_all.zip http://s.config.freikick.com 0
 65.108.7.54(SUDAH TIDAK PAKE VPS INI) https://www.dropbox.com/s/ehl1nzoumxc100e/mullvad_openvpn_linux_all_all.zip
 65.108.7.53 https://www.dropbox.com/s/o0cfl8z3qkaknv9/mullvad_openvpn_linux_all_all.zip http://s.config.freikick.com 0
 65.108.7.52 https://www.dropbox.com/s/o0cfl8z3qkaknv9/mullvad_openvpn_linux_all_all.zip http://s.config.freikick.com 0
@@ -31,4 +31,9 @@
 65.108.12.113 https://www.dropbox.com/s/0yn1npi4caa04we/mullvad_openvpn_linux_all_all.zip http://s.config2.freikick.com 0
 65.108.12.112 https://www.dropbox.com/s/0yn1npi4caa04we/mullvad_openvpn_linux_all_all.zip http://s.config2.freikick.com 0
 192.155.95.116  https://www.dropbox.com/s/0yn1npi4caa04we/mullvad_openvpn_linux_all_all.zip 0 0
-https://www.dropbox.com/s/0yn1npi4caa04we/mullvad_openvpn_linux_all_all.zip 0 0
+65.108.7.58 https://www.dropbox.com/s/0yn1npi4caa04we/mullvad_openvpn_linux_all_all.zip 0 0
+65.108.7.56 https://www.dropbox.com/s/kqohmy7n4fccjx6/mullvad_openvpn_linux_all_all.zip 0 0
+65.108.7.55 https://www.dropbox.com/s/kqohmy7n4fccjx6/mullvad_openvpn_linux_all_all.zip 0 0
+https://www.dropbox.com/s/kqohmy7n4fccjx6/mullvad_openvpn_linux_all_all.zip 0 0
+https://www.dropbox.com/s/kqohmy7n4fccjx6/mullvad_openvpn_linux_all_all.zip 0 0
+https://www.dropbox.com/s/kqohmy7n4fccjx6/mullvad_openvpn_linux_all_all.zip 0 0
